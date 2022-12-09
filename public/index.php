@@ -18,12 +18,17 @@ $frigateIP = $config['config']['ip'];
     <div class="container-fluid bg-primary p-2">
         <div class="row">
             <div class="col-sm text-center">
-                <h3 class="text-white">Flurga</h3>
+                <a href="index.php">
+                    <h3 class="text-white">Flurga</h3>
+                </a>
             </div>
         </div>
+    </div>
+    <div class="container-fluid primary-bg-b2 p-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="events.php" class="text-white">Events</a>
+                <a href="events.php" class="text-white text-decoration-none me-1">Events</a>
+                <a href="recordings.php" class="text-white text-decoration-none ms-1">Recordings</a>
             </div>
         </div>
     </div>
@@ -32,7 +37,7 @@ $frigateIP = $config['config']['ip'];
         <form method="post">
             <div class="row justify-content-center align-items-center" style="margin-top:40px">
                 <div class="form-group col-md-3">
-                    <label class="active" for="giorno">Data</label>
+                    <label class="active" for="giorno">Date</label>
                     <input type="date" id="giorno" name="giorno">
                 </div>
                 <div class="form-group col-md-3 text-center" style="margin-bottom:0px">
@@ -50,17 +55,18 @@ $frigateIP = $config['config']['ip'];
             </div>
             <div class="row justify-content-center align-items-center">
                 <div class="form-group col-md-3">
-                    <label class="active" for="oraInizio">Ora Inizio</label>
+                    <label class="active" for="oraInizio">Start time</label>
                     <input class="form-control" id="oraInizio" name="oraInizio" type="time" required>
                 </div>
                 <div class="form-group col-md-3">
-                    <label class="active" for="oraFine">Ora Fine</label>
+                    <label class="active" for="oraFine">End time</label>
                     <input class="form-control" id="oraFine" name="oraFine" type="time" required>
                 </div>
             </div>
             <div class="row justify-content-center align-items-center">
                 <div class="form-group col-md-3" style="margin-top:-25px">
-                    <button type="submit" name="button" formmethod="post" class="btn btn-primary" style="width:100%">Invia</button>
+                    <button type="submit" name="button" formmethod="post" class="btn btn-primary"
+                        style="width:100%">Search</button>
                 </div>
             </div>
         </form>
@@ -77,8 +83,21 @@ $frigateIP = $config['config']['ip'];
         $timestampI = \DateTime::createFromFormat('Y-m-d H:i', $dataInizio)->getTimestamp();
         $timestampF = \DateTime::createFromFormat('Y-m-d H:i', $dataFine)->getTimestamp();
         $link = 'http://' . $frigateIP . '/vod/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/index.m3u8';
-        $downLink = 'http://' . $frigateIP . '/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
+        $downLink = 'http://' . $frigateIP . '/api/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
         #echo ($timestampI . " " . $timestampF . " " . $link);
+        echo ('<div class="container" style="width:100%;height:50%;padding-bottom:25px">');
+        echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
+        echo ('<source src="' . $link . '" type="application/x-mpegURL">');
+        echo ('</video>');
+        echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">Download video</a>');
+        echo ('</div>');
+    }
+    if (isset($_GET['ti'], $_GET['tf'], $_GET['cam'])) {
+        $timestampI = $_GET['ti'];
+        $timestampF = $_GET['tf'];
+        $cam = $_GET['cam'];
+        $link = 'http://' . $frigateIP . '/vod/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/index.m3u8';
+        $downLink = 'http://' . $frigateIP . '/api/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
         echo ('<div class="container" style="width:100%;height:50%;padding-bottom:25px">');
         echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
         echo ('<source src="' . $link . '" type="application/x-mpegURL">');

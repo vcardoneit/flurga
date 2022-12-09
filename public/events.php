@@ -18,7 +18,7 @@ $j = 0;
 <html>
 
 <head>
-    <title>Flurga</title>
+    <title>Flurga - Events</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
@@ -30,12 +30,17 @@ $j = 0;
     <div class="container-fluid bg-primary p-2">
         <div class="row">
             <div class="col-sm text-center">
-                <h3 class="text-white">Flurga</h3>
+                <a href="index.php">
+                    <h3 class="text-white">Flurga</h3>
+                </a>
             </div>
         </div>
+    </div>
+    <div class="container-fluid primary-bg-b2 p-2 shadow ">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="index.php" class="text-white">Homepage</a>
+                <a href="index.php" class="text-white text-decoration-none me-1">Homepage</a>
+                <a href="recordings.php" class="text-white text-decoration-none ms-1">Recordings</a>
             </div>
         </div>
     </div>
