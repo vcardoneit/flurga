@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  flurga:
+    image: bthuderous/flurga:latest
+    container_name: flurga
+    restart: unless-stopped
+    ports:
+      - 8080:8080 # Web server port
+    volumes:
+      - /home/user/flurga/app.ini:/flurga/app.ini # !! ATTENTION !! Edit app.ini file config with your Frigate IP and cameras

@@ -1,5 +1,5 @@
 <?php
-$config = parse_ini_file("../app.ini", true);
+$config = parse_ini_file("/flurga/app.ini", true);
 $frigateIP = $config['config']['ip'];
 ?>
 <html>
@@ -8,6 +8,7 @@ $frigateIP = $config['config']['ip'];
     <title>Flurga - Recordings</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-italia@2.0.9/dist/css/bootstrap-italia.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
