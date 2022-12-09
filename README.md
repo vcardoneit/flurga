@@ -6,7 +6,8 @@
 2. Hide app.ini file from public web directory
 
 ## Problems / Questions
-For any problem or for asking anything write me at flurga@vcardone.it
+As with any beta, there may be some bugs and frequent updates, but we encourage you to report any issues!<br><br>
+<b>Email:</b> flurga@vcardone.it - <b>Discord:</b> Block2Paz#4884
 
 ## Screenshot
 <img src="https://vcardone.it/imgs/F4.png">
