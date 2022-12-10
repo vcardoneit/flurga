@@ -31,7 +31,7 @@ $j = 0;
     <div class="container-fluid bg-primary p-2">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="index.php">
+                <a href="/">
                     <h3 class="text-white">Flurga</h3>
                 </a>
             </div>
@@ -40,8 +40,8 @@ $j = 0;
     <div class="container-fluid primary-bg-b2 p-2 shadow ">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="index.php" class="text-white text-decoration-none me-1">Homepage</a>
-                <a href="recordings.php" class="text-white text-decoration-none ms-1">Recordings</a>
+                <a href="/" class="text-white text-decoration-none me-1">Homepage</a>
+                <a href="recordings" class="text-white text-decoration-none ms-1">Recordings</a>
             </div>
         </div>
     </div>
