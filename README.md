@@ -17,13 +17,24 @@ services:
       - /home/user/flurga/app.ini:/flurga/app.ini
 ```
 
-!! ATTENTION !! Edit app.ini file config with your Frigate IP and cameras
+## Features
+- Simple login system
+- View and download custom length recording
+- View and delete events
+- View all recordings
 
 ## Config file
+!! ATTENTION !! Edit app.ini file config with your Frigate IP and cameras
 ```
 [config]
 ; Frigate ip with no http:// or https://
 ip = "192.168.144.16:5000"
+
+; Login password
+password = "default123"
+
+; Set your timezone
+tz = "Europe/Rome"
 
 ; Camera list - format: cameras[] = "CAMERANAME"
 cameras[] = "CAM1"
@@ -35,5 +46,6 @@ As with any beta, there may be some bugs and frequent updates, but we encourage 
 <b>Email:</b> flurga@vcardone.it - <b>Discord:</b> Block2Paz#4884
 
 ## Screenshot
+<p align="center"><img src="https://vcardone.it/imgs/flurgalogin.png"></p>
 <img src="https://vcardone.it/imgs/F4.png">
 <a href="https://imgur.com/a/cF40RAp">Other images</a>

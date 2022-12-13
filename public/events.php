@@ -1,6 +1,14 @@
 <?php
+session_start();
+ 
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login");
+    exit;
+}
+
 $config = parse_ini_file("/flurga/app.ini", true);
 $frigateIP = $config['config']['ip'];
+date_default_timezone_set($config['config']['tz']);
 
 if (isset($_POST['del'])) {
     $ch = curl_init('http://' . $frigateIP . '/api/events/' . $_POST['del']);
@@ -24,7 +32,6 @@ $j = 0;
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-italia@2.0.9/dist/css/bootstrap-italia.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
@@ -42,6 +49,7 @@ $j = 0;
             <div class="col-sm text-center">
                 <a href="/" class="text-white text-decoration-none me-1">Homepage</a>
                 <a href="recordings" class="text-white text-decoration-none ms-1">Recordings</a>
+                <a href="logout" class="text-white text-decoration-none ms-4"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </div>
@@ -75,9 +83,10 @@ $j = 0;
     }
     ?>
     <br>
+
+    <script src="https://kit.fontawesome.com/f26c5ea5b1.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-italia@2.0.9/dist/js/bootstrap-italia.bundle.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 </body>
-<script src="https://kit.fontawesome.com/f26c5ea5b1.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/bootstrap-italia@2.0.9/dist/js/bootstrap-italia.bundle.min.js"></script>
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 
 </html>

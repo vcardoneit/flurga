@@ -1,6 +1,15 @@
 <?php
+session_start();
+ 
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login");
+    exit;
+}
+
 $config = parse_ini_file("/flurga/app.ini", true);
 $frigateIP = $config['config']['ip'];
+date_default_timezone_set($config['config']['tz']);
+
 ?>
 <html>
 
@@ -11,7 +20,6 @@ $frigateIP = $config['config']['ip'];
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-italia@2.0.9/dist/css/bootstrap-italia.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
@@ -30,11 +38,12 @@ $frigateIP = $config['config']['ip'];
             <div class="col-sm text-center">
                 <a href="events" class="text-white text-decoration-none me-1">Events</a>
                 <a href="recordings" class="text-white text-decoration-none ms-1">Recordings</a>
+                <a href="logout" class="text-white text-decoration-none ms-4"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
         <form method="post">
             <div class="row justify-content-center align-items-center" style="margin-top:40px">
                 <div class="form-group col-md-3">
@@ -108,9 +117,10 @@ $frigateIP = $config['config']['ip'];
     }
     ?>
     <br>
-
+    
+    <script src="https://kit.fontawesome.com/f26c5ea5b1.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-italia@2.0.9/dist/js/bootstrap-italia.bundle.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 </body>
-<script src="https://unpkg.com/bootstrap-italia@2.0.9/dist/js/bootstrap-italia.bundle.min.js"></script>
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 
 </html>
