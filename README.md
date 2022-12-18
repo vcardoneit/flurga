@@ -16,30 +16,30 @@ version: "3"
 services:
   flurga:
     image: bthuderous/flurga:latest
-    container_name: flurga
+    container_name: Flurga
     restart: unless-stopped
     ports:
-      - 8080:8080 # Web server port
+      - 8080:8080
     volumes:
-      - /home/user/flurga/app.ini:/flurga/app.ini
+      - /home/user/flurga/config.yml:/flurga/config.yml
 ```
 
 ## Config file
-!! ATTENTION !! Edit app.ini file config with your Frigate IP and cameras
-```ini
-[config]
-; Frigate ip with no http:// or https://
-ip = "192.168.144.16:5000"
+```yaml
+flurga:
+  # Username and password for Flurga login
+  username: admin
+  password: default123
+  timezone: Europe/Rome
+  
+frigate:
+  # Frigate IP:PORT
+  host: 192.168.144.16:5000
 
-; Login password
-password = "default123"
-
-; Set your timezone
-tz = "Europe/Rome"
-
-; Camera list - format: cameras[] = "CAMERANAME"
-cameras[] = "CAM1"
-cameras[] = "CAM2"
+  # Cameras list
+  cameras:
+    - CAM1
+    - CAM2
 ```
 
 ## Problems / Questions

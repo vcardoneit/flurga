@@ -6,9 +6,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-$config = parse_ini_file("/flurga/app.ini", true);
-$frigateIP = $config['config']['ip'];
-date_default_timezone_set($config['config']['tz']);
+$config = yaml_parse_file("/flurga/config.yml");
+$frigateIP = $config['frigate']['host'];
+date_default_timezone_set($config['flurga']['timezone']);
 ?>
 <html>
 
@@ -52,10 +52,10 @@ date_default_timezone_set($config['config']['tz']);
                 <div class="form-group col-md-3 text-center" style="margin-bottom:0px">
                     <?php
                     $i = 0;
-                    while ($config['config']['cameras'][$i] ?? null) {
+                    while ($config['frigate']['cameras'][$i] ?? null) {
                         echo ('<div class="form-check form-check-inline">');
-                        echo ('<input name="CAM" type="radio" id="' . $config['config']['cameras'][$i] . '" value="' . $config['config']['cameras'][$i] . '" required>');
-                        echo ('<label for="' . $config['config']['cameras'][$i] . '">' . $config['config']['cameras'][$i] . '</label>');
+                        echo ('<input name="CAM" type="radio" id="' . $config['frigate']['cameras'][$i] . '" value="' . $config['frigate']['cameras'][$i] . '" required>');
+                        echo ('<label for="' . $config['frigate']['cameras'][$i] . '">' . $config['frigate']['cameras'][$i] . '</label>');
                         echo ('</div>');
                         $i++;
                     }

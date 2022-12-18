@@ -1,0 +1,14 @@
+flurga:
+  # Username and password for Flurga login
+  username: admin
+  password: default123
+  timezone: Europe/Rome
+  
+frigate:
+  # Frigate IP:PORT
+  host: 192.168.144.16:5000
+
+  # Cameras list
+  cameras:
+    - CAM1
+    - CAM2

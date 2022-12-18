@@ -9,6 +9,7 @@ RUN apk add --no-cache \
   php81-ctype \
   php81-curl \
   php81-dom \
+  php81-pecl-yaml \
   php81-fpm \
   php81-gd \
   php81-intl \
@@ -29,7 +30,7 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chown -R nobody.nobody /flurga/public /run /var/lib/nginx /var/log/nginx /flurga
 USER nobody
 COPY --chown=nobody /public/ /flurga/public/
-COPY --chown=nobody app.ini /flurga/app.ini
+COPY --chown=nobody config.yml /flurga/config.yml
 EXPOSE 8080
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping

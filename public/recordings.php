@@ -6,9 +6,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-$config = parse_ini_file("/flurga/app.ini", true);
-$frigateIP = $config['config']['ip'];
-date_default_timezone_set($config['config']['tz']);
+$config = yaml_parse_file("/flurga/config.yml");
+$frigateIP = $config['frigate']['host'];
+date_default_timezone_set($config['flurga']['timezone']);
 ?>
 <html>
 
@@ -62,29 +62,29 @@ date_default_timezone_set($config['config']['tz']);
     <div class="container-fluid p-4">
         <?php
         $k = 0;
-        while ($config['config']['cameras'][$k] ?? null) {
+        while ($config['frigate']['cameras'][$k] ?? null) {
             $i = 0;
-            $json = file_get_contents("http://" . $frigateIP . "/api/" . $config['config']['cameras'][$k] . "/recordings/summary");
+            $json = file_get_contents("http://" . $frigateIP . "/api/" . $config['frigate']['cameras'][$k] . "/recordings/summary");
             $data = json_decode($json);
             echo ('<div class="link-list-wrapper d-flex justify-content-center ">');
             echo ('<ul class="link-list primary-bg">');
             echo ('<li class="p-3">');
-            echo ('<a class="list-item large medium" href="#' . $config['config']['cameras'][$k] . '" data-bs-toggle="collapse" aria-expanded="false" aria-controls="' . $config['config']['cameras'][$k] . '">');
+            echo ('<a class="list-item large medium" href="#' . $config['frigate']['cameras'][$k] . '" data-bs-toggle="collapse" aria-expanded="false" aria-controls="' . $config['frigate']['cameras'][$k] . '">');
             echo ('<span class="list-item-title-icon-wrapper">');
-            echo ('<span class="list-item-title text-white">' . $config['config']['cameras'][$k] . '</span>');
+            echo ('<span class="list-item-title text-white">' . $config['frigate']['cameras'][$k] . '</span>');
             echo ('<svg class="icon icon-primary"><i class="fa-solid fa-angle-down text-white"></i></svg>');
             echo ('</span>');
             echo ('</a>');
             while ($data[$i]->day ?? null) {
-                echo ('<ul class="link-sublist collapse" id="' . $config['config']['cameras'][$k] . '">');
+                echo ('<ul class="link-sublist collapse" id="' . $config['frigate']['cameras'][$k] . '">');
                 echo ('<li>');
-                echo ('<a class="list-item" href="#' . $config['config']['cameras'][$k] . $i . '" data-bs-toggle="collapse" aria-expanded="false" aria-controls="' . $config['config']['cameras'][$k] . $i . '">');
+                echo ('<a class="list-item" href="#' . $config['frigate']['cameras'][$k] . $i . '" data-bs-toggle="collapse" aria-expanded="false" aria-controls="' . $config['frigate']['cameras'][$k] . $i . '">');
                 echo ('<span class="list-item-title-icon-wrapper">');
                 echo ('<span class="list-item-title text-white">' . date("d/m/Y", strtotime($data[$i]->day)) . '</span>');
                 echo ('<svg class="icon icon-primary"><i class="fa-solid fa-angle-down text-white"></i></svg>');
                 echo ('</span>');
                 echo ('</a>');
-                echo ('<ul class="link-sublist collapse" id="' . $config['config']['cameras'][$k] . $i . '">');
+                echo ('<ul class="link-sublist collapse" id="' . $config['frigate']['cameras'][$k] . $i . '">');
                 $j = count($data[$i]->hours) - 1;
                 while ($data[$i]->hours[$j]->hour ?? null) {
                     $oraI = $data[$i]->hours[$j]->hour . ":00";
@@ -93,8 +93,8 @@ date_default_timezone_set($config['config']['tz']);
                     $dataFine = $data[$i]->day . " " . $oraF;
                     $timestampI = \DateTime::createFromFormat('Y-m-d H:i', $dataInizio)->getTimestamp();
                     $timestampF = \DateTime::createFromFormat('Y-m-d H:i', $dataFine)->getTimestamp();
-                    $link = 'http://' . $frigateIP . '/' . $config['config']['cameras'][$k] . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
-                    $ilink = '?ti=' . $timestampI . '&tf=' . $timestampF . '&cam=' . $config['config']['cameras'][$k];
+                    $link = 'http://' . $frigateIP . '/' . $config['frigate']['cameras'][$k] . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
+                    $ilink = '?ti=' . $timestampI . '&tf=' . $timestampF . '&cam=' . $config['frigate']['cameras'][$k];
                     echo ('<li><a class="list-item" href="' . $ilink . '"><span class="text-white">' . $oraI . ' - ' . $oraF . '</span></a></li>');
                     $j--;
                 }

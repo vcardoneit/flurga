@@ -6,9 +6,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-$config = parse_ini_file("/flurga/app.ini", true);
-$frigateIP = $config['config']['ip'];
-date_default_timezone_set($config['config']['tz']);
+$config = yaml_parse_file("/flurga/config.yml");
+$frigateIP = $config['frigate']['host'];
+date_default_timezone_set($config['flurga']['timezone']);
 
 $json = file_get_contents("http://" . $frigateIP . "/api/events");
 $data = json_decode($json);
@@ -34,6 +34,7 @@ if (isset($_POST['dall'])) {
         $data = json_decode($json);
         $i = 0;
     } while ($data[$i] ?? null);
+    header("Location: " . $_SERVER['PHP_SELF']);
 }
 ?>
 <html>
