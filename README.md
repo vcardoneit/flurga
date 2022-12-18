@@ -47,7 +47,7 @@ As with any beta, there may be some bugs and frequent updates, but we encourage 
 <b>Email:</b> flurga@vcardone.it - <b>Discord:</b> Block2Paz#4884
 
 ## Screenshot
-<p align="center"><img src="https://vcardone.it/imgs/flurgalogin.png"></p>
-<p align="center"><img src="https://vcardone.it/imgs/dall.png"></p>
-<img src="https://vcardone.it/imgs/F4.png">
-<a href="https://imgur.com/a/cF40RAp">Other images</a>
+<p align="center"><img src="images/login.png"></p>
+<p align="center"><img src="images/home.png"></p>
+<p align="center"><img src="images/events.png"></p>
+<p align="center"><img src="images/recordings.png"></p>
