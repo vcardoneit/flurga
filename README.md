@@ -6,6 +6,7 @@
 - Simple login system
 - View and download custom length recording
 - View and delete events
+- Delete all events at once
 - View all recordings
 
 ## Installation with docker compose
@@ -47,5 +48,6 @@ As with any beta, there may be some bugs and frequent updates, but we encourage 
 
 ## Screenshot
 <p align="center"><img src="https://vcardone.it/imgs/flurgalogin.png"></p>
+<p align="center"><img src="https://vcardone.it/imgs/dall.png"></p>
 <img src="https://vcardone.it/imgs/F4.png">
 <a href="https://imgur.com/a/cF40RAp">Other images</a>

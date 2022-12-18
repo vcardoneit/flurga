@@ -24,7 +24,7 @@ date_default_timezone_set($config['config']['tz']);
 
 <body>
 
-    <div class="container-fluid bg-primary p-2">
+    <div class="container-fluid bg-primary pt-2 pb-2">
         <div class="row">
             <div class="col-sm text-center">
                 <a href="/">
@@ -33,7 +33,7 @@ date_default_timezone_set($config['config']['tz']);
             </div>
         </div>
     </div>
-    <div class="container-fluid primary-bg-b2 p-2 shadow">
+    <div class="container-fluid primary-bg-b2 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
                 <a href="/" class="text-white text-decoration-none me-1">Homepage</a>

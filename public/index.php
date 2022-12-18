@@ -9,7 +9,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 $config = parse_ini_file("/flurga/app.ini", true);
 $frigateIP = $config['config']['ip'];
 date_default_timezone_set($config['config']['tz']);
-
 ?>
 <html>
 
@@ -24,7 +23,7 @@ date_default_timezone_set($config['config']['tz']);
 
 <body>
 
-    <div class="container-fluid bg-primary p-2">
+    <div class="container-fluid bg-primary pt-2 pb-2">
         <div class="row">
             <div class="col-sm text-center">
                 <a href="/">
@@ -33,7 +32,7 @@ date_default_timezone_set($config['config']['tz']);
             </div>
         </div>
     </div>
-    <div class="container-fluid primary-bg-b2 p-2 shadow">
+    <div class="container-fluid primary-bg-b2 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
                 <a href="events" class="text-white text-decoration-none me-1">Events</a>
