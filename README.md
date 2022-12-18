@@ -10,6 +10,7 @@
 - **View all recordings**
 
 ## Installation with docker compose
+<a href="https://hub.docker.com/r/bthuderous/flurga">Docker Image (bthuderous/flurga)</a>
 ```yaml
 version: "3"
 
