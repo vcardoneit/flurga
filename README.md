@@ -10,7 +10,7 @@
 - View all recordings
 
 ## Installation with docker compose
-```
+```yaml
 version: "3"
 
 services:
@@ -26,7 +26,7 @@ services:
 
 ## Config file
 !! ATTENTION !! Edit app.ini file config with your Frigate IP and cameras
-```
+```ini
 [config]
 ; Frigate ip with no http:// or https://
 ip = "192.168.144.16:5000"
