@@ -1,4 +1,20 @@
 <?php
+/* 
+   Copyright (C) 2022  Vincenzo Cardone <vnc@vcardone.it>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 session_start();
  
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -17,9 +33,12 @@ date_default_timezone_set($config['flurga']['timezone']);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-italia@2.0.9/dist/css/bootstrap-italia.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link href="css/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <script>
+        window.__PUBLIC_PATH__ = 'fonts/'
+    </script>
 </head>
 
 <body>
@@ -112,8 +131,8 @@ date_default_timezone_set($config['flurga']['timezone']);
     </div>
 
     <script src="https://kit.fontawesome.com/f26c5ea5b1.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-italia@2.0.9/dist/js/bootstrap-italia.bundle.min.js"></script>
-    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
+    <script src="js/video.min.js"></script>
 </body>
 
 </html>

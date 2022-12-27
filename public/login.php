@@ -1,4 +1,20 @@
 <?php
+/* 
+   Copyright (C) 2022  Vincenzo Cardone <vnc@vcardone.it>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 session_start();
  
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -33,7 +49,10 @@ if(isset($_POST['submit'])){
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-italia@2.0.9/dist/css/bootstrap-italia.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
+    <script>
+        window.__PUBLIC_PATH__ = 'fonts/'
+    </script>
 </head>
 
 <body style="background-color:#404040">
@@ -66,7 +85,7 @@ if(isset($_POST['submit'])){
         </div>
     </div>
 
-    <script src="https://unpkg.com/bootstrap-italia@2.0.9/dist/js/bootstrap-italia.bundle.min.js"></script>
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </body>
 
 </html>
