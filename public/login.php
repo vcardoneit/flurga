@@ -16,22 +16,19 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 session_start();
- 
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: index");
     exit;
 }
 
-$config = yaml_parse_file("/flurga/config.yml");
-date_default_timezone_set($config['flurga']['timezone']);
+include 'validate.php';
 
-if(isset($_POST['submit'])){
-    if($_POST["username"] == $config['flurga']['username']){
-        if($_POST["password"] == $config['flurga']['password']){
+if (isset($_POST['submit'])) {
+    if ($_POST["username"] == $config['flurga']['username']) {
+        if ($_POST["password"] == $config['flurga']['password']) {
             session_start();
-        
-            $_SESSION["loggedin"] = true;                            
-            
+            $_SESSION["loggedin"] = true;
             header("location: index");
         } else {
             $login_err = "Invalid password!";
@@ -50,8 +47,9 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
     <script>
-        window.__PUBLIC_PATH__ = 'fonts/'
+        window.__PUBLIC_PATH__ = 'webfonts/'
     </script>
 </head>
 
@@ -61,7 +59,7 @@ if(isset($_POST['submit'])){
         <div class="row justify-content-center mt-4">
             <div class="col-auto ps-4 pe-4 pt-3 rounded-3" style="background-color:#ebebeb">
                 <?php
-                if(!empty($login_err)){
+                if (!empty($login_err)) {
                     echo '<div class="alert alert-danger" style="background-color:white" role="alert">' . $login_err . '</div>';
                 }
                 ?>

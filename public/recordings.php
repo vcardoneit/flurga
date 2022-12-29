@@ -16,15 +16,13 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 session_start();
- 
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login");
     exit;
 }
 
-$config = yaml_parse_file("/flurga/config.yml");
-$frigateIP = $config['frigate']['host'];
-date_default_timezone_set($config['flurga']['timezone']);
+include 'validate.php';
 ?>
 <html>
 
@@ -35,9 +33,9 @@ date_default_timezone_set($config['flurga']['timezone']);
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link href="css/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
-    <script src="js/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="css/all.min.css" />
     <script>
-        window.__PUBLIC_PATH__ = 'fonts/'
+        window.__PUBLIC_PATH__ = 'webfonts/'
     </script>
 </head>
 
@@ -130,7 +128,6 @@ date_default_timezone_set($config['flurga']['timezone']);
         ?>
     </div>
 
-    <script src="https://kit.fontawesome.com/f26c5ea5b1.js" crossorigin="anonymous"></script>
     <script src="js/bootstrap-italia.bundle.min.js"></script>
     <script src="js/video.min.js"></script>
 </body>

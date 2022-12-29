@@ -16,15 +16,13 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 session_start();
- 
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login");
     exit;
 }
 
-$config = yaml_parse_file("/flurga/config.yml");
-$frigateIP = $config['frigate']['host'];
-date_default_timezone_set($config['flurga']['timezone']);
+include 'validate.php';
 
 $json = file_get_contents("http://" . $frigateIP . "/api/events");
 $data = json_decode($json);
@@ -39,7 +37,7 @@ if (isset($_POST['del'])) {
 if (isset($_POST['dall'])) {
     $i = 0;
     do {
-        while($data[$i] ?? null){
+        while ($data[$i] ?? null) {
             $ch = curl_init('http://' . $frigateIP . '/api/events/' . $data[$i]->id);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -60,10 +58,10 @@ if (isset($_POST['dall'])) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <link href="css/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
     <script>
-        window.__PUBLIC_PATH__ = 'fonts/'
+        window.__PUBLIC_PATH__ = 'webfonts/'
     </script>
 </head>
 
@@ -86,7 +84,7 @@ if (isset($_POST['dall'])) {
             </div>
         </div>
     </div>
-    
+
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-auto">
@@ -98,8 +96,9 @@ if (isset($_POST['dall'])) {
     </div>
 
     <?php
-    $i = 0; $j = 0;
-    if(!isset($data[$i])){
+    $i = 0;
+    $j = 0;
+    if (!isset($data[$i])) {
         echo ("<div class='row justify-content-center'><div class='col-auto'><div class='alert alert-danger mt-3' style='background-color:white' role='alert'>No events found!</div></div></div>");
     }
     while ($j != 3 && ($data[$i] ?? null)) {
@@ -112,7 +111,17 @@ if (isset($_POST['dall'])) {
             echo ('<div class="col-lg-3">');
             echo ('<div class="card-wrapper">');
             echo ('<div class="card card-bg no-after">');
-            echo ('<a href="' . $linkSnap . '" target="_blank"><img src="' . $linkSnap . '" width="100%" class="img-fluid" /></a>');
+
+            $ch = curl_init($linkSnap);
+            curl_setopt($ch, CURLOPT_NOBODY, true);
+            curl_exec($ch);
+            $respcod = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            if ($respcod != 200) {
+                echo ('<div class="alert alert-danger m-4" style="background-color:white" role="alert">Image not found!</div>');
+            } else {
+                echo ('<a href="' . $linkSnap . '" target="_blank"><img src="' . $linkSnap . '" width="100%" class="img-fluid" /></a>');
+            }
+
             echo ('<div class="card-body">');
             echo ('<h3 class="card-title h5 ">' . $data[$i]->camera . " (" . ucfirst($data[$i]->label) . " - " . round($data[$i]->top_score * 100) . '%)<p class="card-text">' . date('d/m/Y H:i:s', $data[$i]->start_time) . '</p></h3>');
             echo ('<p class="card-text"><a href="' . $linkClip . '" target="_blank">View the clip</a></p>');
@@ -131,9 +140,7 @@ if (isset($_POST['dall'])) {
     ?>
     <br>
 
-    <script src="https://kit.fontawesome.com/f26c5ea5b1.js" crossorigin="anonymous"></script>
     <script src="js/bootstrap-italia.bundle.min.js"></script>
-    <script src="js/video.min.js"></script>
 </body>
 
 </html>
