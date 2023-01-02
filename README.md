@@ -32,6 +32,7 @@ flurga:
   username: admin
   password: default123
   timezone: Europe/Rome
+  lang: en
   
 frigate:
   # Frigate IP:PORT
