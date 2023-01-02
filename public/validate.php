@@ -15,8 +15,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-$config = yaml_parse_file("../config.yml");
-#$config = yaml_parse_file("/flurga/config.yml");
+$config = yaml_parse_file("/flurga/config.yml");
 $frigateIP = $config['frigate']['host'];
 $frigateHost = "http://" . $frigateIP . "/api";
 
