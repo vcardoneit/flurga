@@ -15,17 +15,24 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-$config = yaml_parse_file("/flurga/config.yml");
+$config = yaml_parse_file("../config.yml");
+#$config = yaml_parse_file("/flurga/config.yml");
 $frigateIP = $config['frigate']['host'];
 $frigateHost = "http://" . $frigateIP . "/api";
 
+if(isset($config['flurga']['lang']) && file_exists("lang/" . $config['flurga']['lang'] . ".php")){
+    include "lang/".$config['flurga']['lang'].".php";
+} else {
+    include "lang/en.php";
+}
+
 if (@date_default_timezone_set($config['flurga']['timezone']) == FALSE) {
-    $err = "Check timezone in your config file!";
+    $err = TZ_ERROR;
 }
 
 $fh = @file_get_contents($frigateHost);
 if ($fh != "Frigate is running. Alive and healthy!") {
-    $err = "Check Frigate IP in your config file!";
+    $err = FRIGATEIP_ERROR;
 }
 
 $i = 0;
@@ -35,7 +42,7 @@ while ($config['frigate']['cameras'][$i] ?? null) {
     curl_exec($ch);
     $respcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     if ($respcode == 404) {
-        $err = "Check Frigate Cameras in your config file! (" . $config['frigate']['cameras'][$i] . ")";
+        $err = CAM_ERROR . " (" . $config['frigate']['cameras'][$i] . ")";
     }
     $i++;
 }

@@ -27,7 +27,7 @@ include 'validate.php';
 <html>
 
 <head>
-    <title>Flurga - Recordings</title>
+    <title>Flurga - <?= RECORDINGS ?></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
@@ -53,8 +53,8 @@ include 'validate.php';
     <div class="container-fluid primary-bg-b2 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="/" class="text-white text-decoration-none me-1">Homepage</a>
-                <a href="events" class="text-white text-decoration-none ms-1">Events</a>
+                <a href="/" class="text-white text-decoration-none me-1"><?= HOMEPAGE ?></a>
+                <a href="events" class="text-white text-decoration-none ms-1"><?= EVENTS ?></a>
                 <a href="logout" class="text-white text-decoration-none ms-4"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
@@ -71,7 +71,7 @@ include 'validate.php';
         echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
         echo ('<source src="' . $link . '" type="application/x-mpegURL">');
         echo ('</video>');
-        echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">Download video</a>');
+        echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">' . DOWNLOAD_VIDEO . '</a>');
         echo ('</div>');
     }
     ?>

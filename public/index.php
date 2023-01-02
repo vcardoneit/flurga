@@ -53,8 +53,8 @@ include 'validate.php';
     <div class="container-fluid primary-bg-b2 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="events" class="text-white text-decoration-none me-1">Events</a>
-                <a href="recordings" class="text-white text-decoration-none ms-1">Recordings</a>
+                <a href="events" class="text-white text-decoration-none me-1"><?= EVENTS ?></a>
+                <a href="recordings" class="text-white text-decoration-none ms-1"><?= RECORDINGS ?></a>
                 <a href="logout" class="text-white text-decoration-none ms-4"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
@@ -64,7 +64,7 @@ include 'validate.php';
         <form method="post">
             <div class="row justify-content-center align-items-center" style="margin-top:40px">
                 <div class="form-group col-md-3">
-                    <label class="active" for="giorno">Date</label>
+                    <label class="active" for="giorno"><?= DATE ?></label>
                     <input type="date" id="giorno" name="giorno">
                 </div>
                 <div class="form-group col-md-3 text-center" style="margin-bottom:0px">
@@ -82,17 +82,17 @@ include 'validate.php';
             </div>
             <div class="row justify-content-center align-items-center">
                 <div class="form-group col-md-3">
-                    <label class="active" for="oraInizio">Start time</label>
+                    <label class="active" for="oraInizio"><?= START_TIME ?></label>
                     <input class="form-control" id="oraInizio" name="oraInizio" type="time" required>
                 </div>
                 <div class="form-group col-md-3">
-                    <label class="active" for="oraFine">End time</label>
+                    <label class="active" for="oraFine"><?= END_TIME ?></label>
                     <input class="form-control" id="oraFine" name="oraFine" type="time" required>
                 </div>
             </div>
             <div class="row justify-content-center align-items-center">
                 <div class="form-group col-md-3" style="margin-top:-25px">
-                    <button type="submit" name="button" formmethod="post" class="btn btn-primary" style="width:100%">Search</button>
+                    <button type="submit" name="button" formmethod="post" class="btn btn-primary" style="width:100%"><?= SEARCH ?></button>
                 </div>
             </div>
         </form>
@@ -115,7 +115,7 @@ include 'validate.php';
         echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
         echo ('<source src="' . $link . '" type="application/x-mpegURL">');
         echo ('</video>');
-        echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">Download video</a>');
+        echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">' . DOWNLOAD_VIDEO . '</a>');
         echo ('</div>');
     }
     if (isset($_GET['ti'], $_GET['tf'], $_GET['cam'])) {

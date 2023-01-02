@@ -31,13 +31,12 @@ if (isset($_POST['submit'])) {
             $_SESSION["loggedin"] = true;
             header("location: index");
         } else {
-            $login_err = "Invalid password!";
+            $login_err = INVALID_PASSWORD;
         }
     } else {
-        $login_err = "Invalid username!";
+        $login_err = INVALID_USERNAME;
     }
 }
-
 ?>
 <html>
 
@@ -66,17 +65,17 @@ if (isset($_POST['submit'])) {
                 <h1 align="center" style="color:#0066cc">Flurga</h1>
                 <form method="post">
                     <div class="form-group mt-5" style="margin-bottom:40px;">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" aria-describedby="usernameDescription">
-                        <small id="usernameDescription" class="form-text">Please fill in your username</small>
+                        <label for="username"><?= USERNAME ?></label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="<?= USERNAME ?>" aria-describedby="usernameDescription">
+                        <small id="usernameDescription" class="form-text"><?= UN_FILL ?></small>
                     </div>
                     <div class="form-group mb-4">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" aria-describedby="passwordDescription">
-                        <small id="passwordDescription" class="form-text">Please fill in your password</small>
+                        <label for="password"><?= PASSWORD ?></label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="<?= PASSWORD ?>" aria-describedby="passwordDescription">
+                        <small id="passwordDescription" class="form-text"><?= PW_FILL ?></small>
                     </div>
                     <div class="form-group mb-3 text-end">
-                        <input type="submit" name="submit" class="btn btn-primary text-white" value="Login">
+                        <input type="submit" name="submit" class="btn btn-primary text-white" value="<?= LOGIN ?>">
                     </div>
                 </form>
             </div>

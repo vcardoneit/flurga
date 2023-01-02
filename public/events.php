@@ -54,7 +54,7 @@ if (isset($_POST['dall'])) {
 <html>
 
 <head>
-    <title>Flurga - Events</title>
+    <title>Flurga - <?= EVENTS ?></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
@@ -78,8 +78,8 @@ if (isset($_POST['dall'])) {
     <div class="container-fluid primary-bg-b2 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="/" class="text-white text-decoration-none me-1">Homepage</a>
-                <a href="recordings" class="text-white text-decoration-none ms-1">Recordings</a>
+                <a href="/" class="text-white text-decoration-none me-1"><?= HOMEPAGE ?></a>
+                <a href="recordings" class="text-white text-decoration-none ms-1"><?= RECORDINGS ?></a>
                 <a href="logout" class="text-white text-decoration-none ms-4"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
@@ -89,7 +89,7 @@ if (isset($_POST['dall'])) {
         <div class="row justify-content-center">
             <div class="col-auto">
                 <div class="form-group mt-3 mb-0">
-                    <form class="mb-0" method="post"><button type="submit" name="dall" formmethod="post" class="btn btn-primary" style="width:100%">Delete all events</button></form>
+                    <form class="mb-0" method="post"><button type="submit" name="dall" formmethod="post" class="btn btn-primary" style="width:100%"><?= DELETE_ALL_EVENTS ?></button></form>
                 </div>
             </div>
         </div>
@@ -124,7 +124,7 @@ if (isset($_POST['dall'])) {
 
             echo ('<div class="card-body">');
             echo ('<h3 class="card-title h5 ">' . $data[$i]->camera . " (" . ucfirst($data[$i]->label) . " - " . round($data[$i]->top_score * 100) . '%)<p class="card-text">' . date('d/m/Y H:i:s', $data[$i]->start_time) . '</p></h3>');
-            echo ('<p class="card-text"><a href="' . $linkClip . '" target="_blank">View the clip</a></p>');
+            echo ('<p class="card-text"><a href="' . $linkClip . '" target="_blank">' . VIEW_CLIP . '</a></p>');
             echo ('<form style="margin-bottom:0px"><button class="btn btn-primary" type="submit" formmethod="post" name="del" value="' . $data[$i]->id . '"><i class="fa-regular fa-trash-can"></i></button></form>');
             echo ('</div>');
             echo ('</div>');
