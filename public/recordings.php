@@ -30,6 +30,7 @@ include 'validate.php';
     <title>Flurga - <?= RECORDINGS ?></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link href="css/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />

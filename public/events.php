@@ -57,6 +57,7 @@ if (isset($_POST['dall'])) {
     <title>Flurga - <?= EVENTS ?></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
@@ -112,11 +113,7 @@ if (isset($_POST['dall'])) {
             echo ('<div class="card-wrapper">');
             echo ('<div class="card card-bg no-after">');
 
-            $ch = curl_init($linkSnap);
-            curl_setopt($ch, CURLOPT_NOBODY, true);
-            curl_exec($ch);
-            $respcod = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($respcod != 200) {
+            if ((get_headers($linkSnap)[0] != "HTTP/1.1 200 OK")) {
                 echo ('<div class="alert alert-danger m-4" style="background-color:white" role="alert">Image not found!</div>');
             } else {
                 echo ('<a href="' . $linkSnap . '" target="_blank"><img src="' . $linkSnap . '" width="100%" class="img-fluid" /></a>');

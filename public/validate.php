@@ -36,11 +36,7 @@ if ($fh != "Frigate is running. Alive and healthy!") {
 
 $i = 0;
 while ($config['frigate']['cameras'][$i] ?? null) {
-    $ch = curl_init($frigateHost . "/" . $config['frigate']['cameras'][$i] . "/latest.jpg");
-    curl_setopt($ch, CURLOPT_NOBODY, true);
-    curl_exec($ch);
-    $respcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    if ($respcode == 404) {
+    if (get_headers($frigateHost . "/" . $config['frigate']['cameras'][$i] . "/latest.jpg", 1)[0] != "HTTP/1.1 200 OK") {
         $err = CAM_ERROR . " (" . $config['frigate']['cameras'][$i] . ")";
     }
     $i++;
@@ -56,6 +52,7 @@ if (!isset($err)) {
     <title>Flurga - Error</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
     <script>

@@ -30,6 +30,7 @@ include 'validate.php';
     <title>Flurga</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/video-js.css" />
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
@@ -109,14 +110,19 @@ include 'validate.php';
         $timestampI = \DateTime::createFromFormat('Y-m-d H:i', $dataInizio)->getTimestamp();
         $timestampF = \DateTime::createFromFormat('Y-m-d H:i', $dataFine)->getTimestamp();
         $link = 'http://' . $frigateIP . '/vod/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/index.m3u8';
-        $downLink = 'http://' . $frigateIP . '/api/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
-        #echo ($timestampI . " " . $timestampF . " " . $link);
-        echo ('<div class="container" style="width:100%;height:50%;padding-bottom:25px">');
-        echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
-        echo ('<source src="' . $link . '" type="application/x-mpegURL">');
-        echo ('</video>');
-        echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">' . DOWNLOAD_VIDEO . '</a>');
-        echo ('</div>');
+        if(get_headers($link, 1)[0] == "HTTP/1.1 200 OK"){
+            $downLink = 'http://' . $frigateIP . '/api/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
+            #echo ($timestampI . " " . $timestampF . " " . $link);
+            echo ('<div class="container" style="width:100%;height:50%;padding-bottom:25px">');
+            echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
+            echo ('<source src="' . $link . '" type="application/x-mpegURL">');
+            echo ('</video>');
+            echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">' . DOWNLOAD_VIDEO . '</a>');
+            echo ('</div>');
+        } else {
+            echo ('<div class="row justify-content-center" style="margin-top:-25px"><div class="col-auto"><div class="alert alert-danger" style="background-color:white" role="alert"><b>ERROR</b><br>Video not found!</div></div></div>');
+        }
+
     }
     if (isset($_GET['ti'], $_GET['tf'], $_GET['cam'])) {
         $timestampI = $_GET['ti'];
