@@ -1,6 +1,6 @@
 <?php
 /* 
-   Copyright (C) 2022  Vincenzo Cardone <vnc@vcardone.it>
+   Copyright (C) 2022-2023  Vincenzo Cardone <vnc@vcardone.it>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ include 'validate.php';
     </script>
 </head>
 
-<body>
+<body class="neutral-2-bg">
 
     <div class="container-fluid bg-primary pt-2 pb-2">
         <div class="row">
@@ -51,7 +51,7 @@ include 'validate.php';
             </div>
         </div>
     </div>
-    <div class="container-fluid primary-bg-b2 pt-2 pb-2 shadow">
+    <div class="container-fluid primary-bg-b3 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
                 <a href="/" class="text-white text-decoration-none me-1"><?= HOMEPAGE ?></a>

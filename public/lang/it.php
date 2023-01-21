@@ -20,3 +20,4 @@ define("TZ_ERROR", "Verifica il fuso orario nel file di configurazione!");
 define("FRIGATEIP_ERROR", "Verifica l'indirizzo IP di Frigate nel file di configurazione!");
 define("CAM_ERROR", "Verifica le telecamere nel file di configurazione!");
 define("LOGIN", "Accedi");
+define("IMAGE_NOT_FOUND", "Immagine non trovata!");

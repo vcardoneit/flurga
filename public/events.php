@@ -1,6 +1,6 @@
 <?php
 /* 
-   Copyright (C) 2022  Vincenzo Cardone <vnc@vcardone.it>
+   Copyright (C) 2022-2023  Vincenzo Cardone <vnc@vcardone.it>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ if (isset($_POST['dall'])) {
     </script>
 </head>
 
-<body>
+<body class="neutral-2-bg">
     <div class="container-fluid bg-primary pt-2 pb-2">
         <div class="row">
             <div class="col-sm text-center">
@@ -76,7 +76,7 @@ if (isset($_POST['dall'])) {
             </div>
         </div>
     </div>
-    <div class="container-fluid primary-bg-b2 pt-2 pb-2 shadow">
+    <div class="container-fluid primary-bg-b3 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
                 <a href="/" class="text-white text-decoration-none me-1"><?= HOMEPAGE ?></a>
@@ -105,8 +105,8 @@ if (isset($_POST['dall'])) {
     while ($j != 3 && ($data[$i] ?? null)) {
         echo ('<div class="row justify-content-center" style="padding-top:25px;margin: auto">');
         while (($data[$i] ?? null) and ($j < 3)) {
-            $link = 'http://' . $frigateIP . '/api/events/' . $data[$i]->id . '/thumbnail.jpg';
             $linkSnap = 'http://' . $frigateIP . '/api/events/' . $data[$i]->id . '/snapshot.jpg';
+
             $linkClip = 'http://' . $frigateIP . '/api/events/' . $data[$i]->id . '/clip.mp4';
 
             echo ('<div class="col-lg-3">');
@@ -114,9 +114,10 @@ if (isset($_POST['dall'])) {
             echo ('<div class="card card-bg no-after">');
 
             if ((get_headers($linkSnap)[0] != "HTTP/1.1 200 OK")) {
-                echo ('<div class="alert alert-danger m-4" style="background-color:white" role="alert">Image not found!</div>');
+                echo ('<div class="alert alert-danger m-4" style="background-color:white" role="alert">' . IMAGE_NOT_FOUND . '</div>');
             } else {
-                echo ('<a href="' . $linkSnap . '" target="_blank"><img src="' . $linkSnap . '" width="100%" class="img-fluid" /></a>');
+                $image = file_get_contents($linkSnap);
+                echo sprintf('<img src="data:image/png;base64,%s" width="100%%" class="img-fluid" />', base64_encode($image));
             }
 
             echo ('<div class="card-body">');

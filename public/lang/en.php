@@ -20,3 +20,4 @@ define("TZ_ERROR", "Check timezone in your config file!");
 define("FRIGATEIP_ERROR", "Check Frigate IP in your config file!");
 define("CAM_ERROR", "Check Frigate Cameras in your config file!");
 define("LOGIN", "Login");
+define("IMAGE_NOT_FOUND", "Image not found!");
