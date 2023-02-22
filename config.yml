@@ -5,11 +5,15 @@ flurga:
   timezone: Europe/Rome
   lang: en
   
-frigate:
-  # Frigate IP:PORT
-  host: 192.168.144.16:5000
+frigate: # Frigate Instances
+  0: # Progressive number
+    ip: 192.168.144.16:5000 # Frigate IP
+    cameras: # Cameras list
+      - CAM1
+      - CAM2
 
-  # Cameras list
-  cameras:
-    - CAM1
-    - CAM2
+  1:
+    ip: 192.168.144.20:5000
+    cameras:
+      - CAM3
+      - CAM4

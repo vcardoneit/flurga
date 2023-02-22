@@ -16,8 +16,6 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 $config = yaml_parse_file("/flurga/config.yml");
-$frigateIP = $config['frigate']['host'];
-$frigateHost = "http://" . $frigateIP . "/api";
 
 if(isset($config['flurga']['lang']) && file_exists("lang/" . $config['flurga']['lang'] . ".php")){
     include "lang/".$config['flurga']['lang'].".php";
@@ -29,15 +27,29 @@ if (@date_default_timezone_set($config['flurga']['timezone']) == FALSE) {
     $err = TZ_ERROR;
 }
 
-$fh = @file_get_contents($frigateHost);
-if ($fh != "Frigate is running. Alive and healthy!") {
-    $err = FRIGATEIP_ERROR;
-}
-
 $i = 0;
-while ($config['frigate']['cameras'][$i] ?? null) {
-    if (get_headers($frigateHost . "/" . $config['frigate']['cameras'][$i] . "/latest.jpg", 1)[0] != "HTTP/1.1 200 OK") {
-        $err = CAM_ERROR . " (" . $config['frigate']['cameras'][$i] . ")";
+$k = 0;
+while ($config['frigate'][$i]['ip'] ?? null) {
+    $frigateIP = $config['frigate'][$i]['ip'];
+    $frigateHost = "http://" . $frigateIP . "/api";
+    $frigateStats = "http://" . $frigateIP . "/api/stats";
+
+    $fh = @file_get_contents($frigateHost);
+    if ($fh != "Frigate is running. Alive and healthy!") {
+        $err = FRIGATEIP_ERROR . '<br>(' . $frigateIP . ')';
+        break;
+    }
+
+    $j = 0;
+    while ($config['frigate'][$i]['cameras'][$j] ?? null) {
+        if (get_headers($frigateHost . "/" . $config['frigate'][$i]['cameras'][$j] . "/latest.jpg", 1)[0] != "HTTP/1.1 200 OK") {
+            $err = CAM_ERROR . "<br>(" . $frigateIP . " - " . $config['frigate'][$i]['cameras'][$j] . ")";
+            break;
+        } else {
+            $cams[$i][$k]=$config['frigate'][$i]['cameras'][$j];
+        }
+        $j++;
+        $k++;
     }
     $i++;
 }

@@ -2,12 +2,19 @@
 <h1 align="center">Flurga</h1>
 <p align="center">Flurga is a web interface for Frigate NVR build with "Bootstrap Italia" theme<br><br><img src=https://img.shields.io/github/issues/Block2Paz/Flurga>  <img src=https://img.shields.io/github/license/Block2Paz/Flurga> <img src=https://img.shields.io/github/stars/Block2Paz/Flurga></p>
 
+## To Do List
+| Status | Item                                              |
+| :----: | ------------------------------------------------- |
+|   ❌   | Fix event page for multi frigate instance feature |
+|   ❌   | Optimize code                                     |
+
 ## Features
 - **Simple login system**
 - **View and download custom length recording**
 - **View and delete events**
 - **Delete all events at once**
 - **View all recordings**
+- **Multi Frigate Hosts support**
 
 ## Installation with docker compose
 <a href="https://hub.docker.com/r/bthuderous/flurga">Docker Image (bthuderous/flurga)</a>

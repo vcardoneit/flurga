@@ -70,12 +70,14 @@ include 'validate.php';
                 </div>
                 <div class="form-group col-md-3 text-center" style="margin-bottom:0px">
                     <?php
-                    $i = 0;
-                    while ($config['frigate']['cameras'][$i] ?? null) {
-                        echo ('<div class="form-check form-check-inline">');
-                        echo ('<input name="CAM" type="radio" id="' . $config['frigate']['cameras'][$i] . '" value="' . $config['frigate']['cameras'][$i] . '" required>');
-                        echo ('<label for="' . $config['frigate']['cameras'][$i] . '">' . $config['frigate']['cameras'][$i] . '</label>');
-                        echo ('</div>');
+                    $i = 0; $j = 0;
+                    while ($cams[$i][$j] ?? null){
+                        echo('<div class="form-check">');
+                        while ($cams[$i][$j] ?? null) {
+                            echo('<input name="camrs[]" id="' . $cams[$i][$j] . '" value="' . $cams[$i][$j] . '" type="checkbox"><label for="' . $cams[$i][$j] . '">' . $cams[$i][$j] . '</label>');
+                            $j++;
+                        }
+                        echo('</div>');
                         $i++;
                     }
                     ?>
@@ -104,23 +106,37 @@ include 'validate.php';
         $data = $_POST['giorno'];
         $oraI = $_POST['oraInizio'];
         $oraF = $_POST['oraFine'];
-        $cam = $_POST['CAM'];
+        $cam = $_POST['camrs'];
         $dataInizio = $data . " " . $oraI;
         $dataFine = $data . " " . $oraF;
         $timestampI = \DateTime::createFromFormat('Y-m-d H:i', $dataInizio)->getTimestamp();
         $timestampF = \DateTime::createFromFormat('Y-m-d H:i', $dataFine)->getTimestamp();
-        $link = 'http://' . $frigateIP . '/vod/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/index.m3u8';
-        if(get_headers($link, 1)[0] == "HTTP/1.1 200 OK"){
-            $downLink = 'http://' . $frigateIP . '/api/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
-            #echo ($timestampI . " " . $timestampF . " " . $link);
-            echo ('<div class="container" style="width:100%;height:50%;padding-bottom:25px">');
-            echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
-            echo ('<source src="' . $link . '" type="application/x-mpegURL">');
-            echo ('</video>');
-            echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">' . DOWNLOAD_VIDEO . '</a>');
-            echo ('</div>');
-        } else {
-            echo ('<div class="row justify-content-center" style="margin-top:-25px"><div class="col-auto"><div class="alert alert-danger" style="background-color:white" role="alert"><b>ERROR</b><br>Video not found!</div></div></div>');
+
+        $i = 0;
+        while($cams[$i] ?? null){
+            $j = 0;
+            while ($cam[$j] ?? null){
+                $sh = array_search($cam[$j], $cams[$i]);
+                if(is_numeric($sh)){
+                    $frigateIP = $config['frigate'][$i]['ip'];
+                    $link = 'http://' . $frigateIP . '/vod/' . $cam[$j] . '/start/' . $timestampI . '/end/' . $timestampF . '/index.m3u8';
+                    if(get_headers($link, 1)[0] == "HTTP/1.1 200 OK"){
+                        $downLink = 'http://' . $frigateIP . '/api/' . $cam[$j] . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
+                        echo ('<div class="container" style="width:100%;height:50%;padding-bottom:25px">');
+                        echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
+                        echo ('<source src="' . $link . '" type="application/x-mpegURL">');
+                        echo ('</video>');
+                        echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">' . DOWNLOAD_VIDEO . '</a>');
+                        echo ('</div><br>');
+                    } else {
+                        echo ('<div class="row justify-content-center" style="margin-top:-25px"><div class="col-auto"><div class="alert alert-danger" style="background-color:white" role="alert"><b>ERROR</b><br>Video not found!<br>(' . $cam[$j] . ')</div></div></div><br>');
+                    }
+                }
+
+                $j++;
+            }
+
+            $i++;
         }
 
     }
