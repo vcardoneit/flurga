@@ -5,7 +5,6 @@
 ## To Do List
 | Status | Item                                              |
 | :----: | ------------------------------------------------- |
-|   ❌   | Fix event page for multi frigate instance feature |
 |   ❌   | Optimize code                                     |
 
 ## Features
