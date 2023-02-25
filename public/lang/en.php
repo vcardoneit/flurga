@@ -21,3 +21,4 @@ define("FRIGATEIP_ERROR", "Check Frigate IP in your config file!");
 define("CAM_ERROR", "Check Frigate Cameras in your config file!");
 define("LOGIN", "Login");
 define("IMAGE_NOT_FOUND", "Image not found!");
+define("ARE_YOU_SURE", "Are you sure you want to delete all events?");

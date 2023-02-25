@@ -21,3 +21,4 @@ define("FRIGATEIP_ERROR", "Verifica l'indirizzo IP di Frigate nel file di config
 define("CAM_ERROR", "Verifica le telecamere nel file di configurazione!");
 define("LOGIN", "Accedi");
 define("IMAGE_NOT_FOUND", "Immagine non trovata!");
+define("ARE_YOU_SURE", "Sei sicuro di voler cancellare tutti gli eventi?");
