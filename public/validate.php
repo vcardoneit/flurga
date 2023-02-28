@@ -67,9 +67,8 @@ if (!isset($err)) {
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
-    <script>
-        window.__PUBLIC_PATH__ = 'webfonts/'
-    </script>
+    <script>window.__PUBLIC_PATH__ = 'webfonts/'</script>
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </head>
 
 <body>
@@ -93,8 +92,6 @@ if (!isset($err)) {
             </div>
         </div>
     </div>
-
-    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </body>
 
 </html>

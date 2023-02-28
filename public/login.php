@@ -48,9 +48,8 @@ if (isset($_POST['submit'])) {
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
-    <script>
-        window.__PUBLIC_PATH__ = 'webfonts/'
-    </script>
+    <script>window.__PUBLIC_PATH__ = 'webfonts/'</script>
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </head>
 
 <body style="background-color:#404040">
@@ -83,7 +82,6 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
-    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </body>
 
 </html>

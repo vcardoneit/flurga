@@ -68,9 +68,8 @@ if (isset($_POST['dall'])) {
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
-    <script>
-        window.__PUBLIC_PATH__ = 'webfonts/'
-    </script>
+    <script>window.__PUBLIC_PATH__ = 'webfonts/'</script>
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </head>
 
 <body class="neutral-2-bg">
@@ -86,9 +85,9 @@ if (isset($_POST['dall'])) {
     <div class="container-fluid primary-bg-b3 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="/" class="text-white text-decoration-none me-1"><?= HOMEPAGE ?></a>
-                <a href="recordings" class="text-white text-decoration-none ms-1"><?= RECORDINGS ?></a>
-                <a href="logout" class="text-white text-decoration-none ms-4"><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="/" class="text-white text-decoration-none me-2"><?= HOMEPAGE ?></a>
+                <a href="recordings" class="text-white text-decoration-none me-2"><?= RECORDINGS ?></a>
+                <a href="logout" class="text-white text-decoration-none"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </div>
@@ -109,7 +108,7 @@ if (isset($_POST['dall'])) {
         $frigateIP = $config['frigate'][$i]['ip'];
         $json = file_get_contents("http://" . $frigateIP . "/api/events");
         $data = json_decode($json);
-        
+
         $a = 0; $b = 0;
         while ($b != 3 && ($data[$a] ?? null)) {
             echo ('<div class="row justify-content-center" style="padding-top:25px;margin: auto">');
@@ -150,7 +149,6 @@ if (isset($_POST['dall'])) {
     ?>
     <br>
 
-    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </body>
 
 </html>

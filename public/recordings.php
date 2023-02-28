@@ -35,9 +35,9 @@ include 'validate.php';
     <link href="css/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
-    <script>
-        window.__PUBLIC_PATH__ = 'webfonts/'
-    </script>
+    <script>window.__PUBLIC_PATH__ = 'webfonts/'</script>
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
+    <script src="js/video.min.js"></script>
 </head>
 
 <body class="neutral-2-bg">
@@ -54,21 +54,23 @@ include 'validate.php';
     <div class="container-fluid primary-bg-b3 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="/" class="text-white text-decoration-none me-1"><?= HOMEPAGE ?></a>
-                <a href="events" class="text-white text-decoration-none ms-1"><?= EVENTS ?></a>
-                <a href="logout" class="text-white text-decoration-none ms-4"><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="/" class="text-white text-decoration-none me-2"><?= HOMEPAGE ?></a>
+                <a href="events" class="text-white text-decoration-none me-2"><?= EVENTS ?></a>
+                <a href="logout" class="text-white text-decoration-none"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </div>
 
     <?php
-    if (isset($_GET['ti'], $_GET['tf'], $_GET['cam'])) {
+    if (isset($_GET['ti'], $_GET['tf'], $_GET['cam'], $_GET['fi'])) {
         $timestampI = $_GET['ti'];
         $timestampF = $_GET['tf'];
         $cam = $_GET['cam'];
-        $frg = $_GET['fi'];
-        $link = 'http://' . $config['frigate'][$frg]['ip'] . '/vod/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/index.m3u8';
-        $downLink = 'http://' . $config['frigate'][$frg]['ip'] . '/api/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
+        $frigateIP = $config['frigate'][$_GET['fi']]['ip'];
+
+        $link = 'http://' . $frigateIP . '/vod/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/index.m3u8';
+        $downLink = 'http://' . $frigateIP . '/api/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
+
         echo ('<div class="container" style="width:100%;height:50%;padding-bottom:25px;padding-top:25px">');
         echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
         echo ('<source src="' . $link . '" type="application/x-mpegURL">');
@@ -81,7 +83,6 @@ include 'validate.php';
     <div class="container-fluid p-4">
         <?php
         $i = 0;
-        $k = 0;
         while ($config['frigate'][$i]['ip'] ?? null) {
             $frigateIP = $config['frigate'][$i]['ip'];
 
@@ -139,8 +140,6 @@ include 'validate.php';
         ?>
     </div>
 
-    <script src="js/bootstrap-italia.bundle.min.js"></script>
-    <script src="js/video.min.js"></script>
 </body>
 
 </html>

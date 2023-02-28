@@ -1,14 +1,13 @@
 flurga:
-  # Username and password for Flurga login
   username: admin
   password: default123
   timezone: Europe/Rome
-  lang: en
+  lang: en # Supported: en, es, fr, it
   
-frigate: # Frigate Instances
+frigate:
   0: # Progressive number
     ip: 192.168.144.16:5000 # Frigate IP
-    cameras: # Cameras list
+    cameras:
       - CAM1
       - CAM2
 

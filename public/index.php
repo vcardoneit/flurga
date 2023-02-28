@@ -35,9 +35,9 @@ include 'validate.php';
     <link rel="stylesheet" href="css/video-js.css" />
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
-    <script>
-        window.__PUBLIC_PATH__ = 'webfonts/'
-    </script>
+    <script>window.__PUBLIC_PATH__ = 'webfonts/'</script>
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
+    <script src="js/video.min.js"></script>
 </head>
 
 <body>
@@ -54,9 +54,9 @@ include 'validate.php';
     <div class="container-fluid primary-bg-b3 pt-2 pb-2 shadow">
         <div class="row">
             <div class="col-sm text-center">
-                <a href="events" class="text-white text-decoration-none me-1"><?= EVENTS ?></a>
-                <a href="recordings" class="text-white text-decoration-none ms-1"><?= RECORDINGS ?></a>
-                <a href="logout" class="text-white text-decoration-none ms-4"><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="events" class="text-white text-decoration-none me-2"><?= EVENTS ?></a>
+                <a href="recordings" class="text-white text-decoration-none me-2"><?= RECORDINGS ?></a>
+                <a href="logout" class="text-white text-decoration-none"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@ include 'validate.php';
                     while ($cams[$i][$j] ?? null){
                         echo('<div class="form-check">');
                         while ($cams[$i][$j] ?? null) {
-                            echo('<input name="camrs[]" id="' . $cams[$i][$j] . '" value="' . $cams[$i][$j] . '" type="checkbox"><label for="' . $cams[$i][$j] . '">' . $cams[$i][$j] . '</label>');
+                            echo('<input name="camls[]" id="' . $cams[$i][$j] . '" value="' . $cams[$i][$j] . '" type="checkbox"><label for="' . $cams[$i][$j] . '">' . $cams[$i][$j] . '</label>');
                             $j++;
                         }
                         echo('</div>');
@@ -106,7 +106,7 @@ include 'validate.php';
         $data = $_POST['giorno'];
         $oraI = $_POST['oraInizio'];
         $oraF = $_POST['oraFine'];
-        $cam = $_POST['camrs'];
+        $cam = $_POST['camls'];
         $dataInizio = $data . " " . $oraI;
         $dataFine = $data . " " . $oraF;
         $timestampI = \DateTime::createFromFormat('Y-m-d H:i', $dataInizio)->getTimestamp();
@@ -132,32 +132,15 @@ include 'validate.php';
                         echo ('<div class="row justify-content-center" style="margin-top:-25px"><div class="col-auto"><div class="alert alert-danger" style="background-color:white" role="alert"><b>ERROR</b><br>Video not found!<br>(' . $cam[$j] . ')</div></div></div><br>');
                     }
                 }
-
                 $j++;
             }
-
             $i++;
         }
 
     }
-    if (isset($_GET['ti'], $_GET['tf'], $_GET['cam'])) {
-        $timestampI = $_GET['ti'];
-        $timestampF = $_GET['tf'];
-        $cam = $_GET['cam'];
-        $link = 'http://' . $frigateIP . '/vod/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/index.m3u8';
-        $downLink = 'http://' . $frigateIP . '/api/' . $cam . '/start/' . $timestampI . '/end/' . $timestampF . '/clip.mp4';
-        echo ('<div class="container" style="width:100%;height:50%;padding-bottom:25px">');
-        echo ('<video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">');
-        echo ('<source src="' . $link . '" type="application/x-mpegURL">');
-        echo ('</video>');
-        echo ('<a href="' . $downLink . '" target="_blank" download="a.mp4">Download video</a>');
-        echo ('</div>');
-    }
     ?>
     <br>
 
-    <script src="js/bootstrap-italia.bundle.min.js"></script>
-    <script src="js/video.min.js"></script>
 </body>
 
 </html>
