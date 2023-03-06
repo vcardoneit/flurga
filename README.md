@@ -11,21 +11,25 @@
 - **View and delete events**
 - **View recordings**
 
-## Installation with docker compose
-<a href="https://hub.docker.com/r/bthuderous/flurga">Docker Image (bthuderous/flurga)</a>
+## Installation with Docker
+#### Docker compose
 ```yaml
-version: "3"
-
+version: '3.3'
 services:
-  flurga:
-    image: bthuderous/flurga:latest
-    container_name: Flurga
-    restart: unless-stopped
-    ports:
-      - 8080:8080
-    volumes:
-      - /home/user/flurga/config.yml:/flurga/config.yml
+    flurga:
+        container_name: Flurga
+        restart: unless-stopped
+        ports:
+            - '8080:8080'
+        volumes:
+            - '~/flurga/config.yml:/flurga/config.yml'
+        image: 'bthuderous/flurga:latest'
 ```
+#### Docker run
+```
+docker run -d --name Flurga --restart unless-stopped -p 8080:8080 -v '~/flurga/config.yml:/flurga/config.yml' bthuderous/flurga:latest
+```
+<a href="https://hub.docker.com/r/bthuderous/flurga">Docker Image (bthuderous/flurga)</a>
 
 ## Config file
 ```yaml

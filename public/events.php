@@ -57,6 +57,8 @@ if (isset($_POST['dall'])) {
     }
     header("Location: " . $_SERVER['PHP_SELF']);
 }
+
+session_commit();
 ?>
 <html>
 
@@ -69,7 +71,6 @@ if (isset($_POST['dall'])) {
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <script>window.__PUBLIC_PATH__ = 'webfonts/'</script>
-    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </head>
 
 <body class="neutral-2-bg">
@@ -149,6 +150,7 @@ if (isset($_POST['dall'])) {
     ?>
     <br>
 
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </body>
 
 </html>

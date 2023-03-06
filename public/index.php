@@ -36,7 +36,6 @@ include 'validate.php';
     <link rel="stylesheet" href="css/bootstrap-italia.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <script>window.__PUBLIC_PATH__ = 'webfonts/'</script>
-    <script src="js/bootstrap-italia.bundle.min.js"></script>
     <script src="js/video.min.js"></script>
 </head>
 
@@ -94,7 +93,7 @@ include 'validate.php';
                 </div>
             </div>
             <div class="row justify-content-center align-items-center">
-                <div class="form-group col-md-3" style="margin-top:-25px">
+                <div class="form-group col-md-3" style="margin-top:-25px;margin-bottom:15px">
                     <button type="submit" name="button" formmethod="post" class="btn btn-primary" style="width:100%"><?= SEARCH ?></button>
                 </div>
             </div>
@@ -141,6 +140,7 @@ include 'validate.php';
     ?>
     <br>
 
+    <script src="js/bootstrap-italia.bundle.min.js"></script>
 </body>
 
 </html>
