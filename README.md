@@ -27,7 +27,7 @@ services:
 ```
 #### Docker run
 ```
-docker run -d --name Flurga --restart unless-stopped -p 8080:8080 -v '~/flurga/config.yml:/flurga/config.yml' bthuderous/flurga:latest
+docker run -d --name Flurga --restart unless-stopped -p 8080:8080 -v "~/flurga/config.yml:/flurga/config.yml" bthuderous/flurga:latest
 ```
 <a href="https://hub.docker.com/r/bthuderous/flurga">Docker Image (bthuderous/flurga)</a>
 
