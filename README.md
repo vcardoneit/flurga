@@ -4,14 +4,15 @@
 
 ## Features
 - **Login system**
+- **Simple dashboard**
 - **Multiple Frigate instances support**
 - **View and download custom length recording**
 - **Delete all events at once**
-- **Multi language (en, es, fr, it)**
+- **Multi language (de, en, es, fr, it)**
 - **View and delete events**
 - **View recordings**
 
-## Installation with Docker
+## Installation with Docker <a href="https://hub.docker.com/r/bthuderous/flurga">(bthuderous/flurga)</a>
 #### Docker compose
 ```yaml
 version: '3.3'
@@ -20,45 +21,32 @@ services:
         container_name: Flurga
         restart: unless-stopped
         ports:
-            - '8080:8080'
-        volumes:
-            - '~/flurga/config.yml:/flurga/config.yml'
+            - '1923:1923'
         image: 'bthuderous/flurga:latest'
 ```
 #### Docker run
 ```
-docker run -d --name Flurga --restart unless-stopped -p 8080:8080 -v "~/flurga/config.yml:/flurga/config.yml" bthuderous/flurga:latest
+docker run -d --name Flurga --restart unless-stopped -p 1923:1923 bthuderous/flurga:latest
 ```
-<a href="https://hub.docker.com/r/bthuderous/flurga">Docker Image (bthuderous/flurga)</a>
 
-## Config file
-```yaml
-flurga:
-  username: admin
-  password: default123
-  timezone: Europe/Rome
-  lang: en # Supported: en, es, fr, it
-  
-frigate:
-  0: # Progressive number
-    ip: 192.168.144.16:5000 # Frigate IP
-    cameras:
-      - CAM1
-      - CAM2
+#### Environment Variables
+| Environment Variable  | Purpose | Default |
+| ------------- | ------------- | ------------- |
+| `TIME_ZONE`  | Your local timezone in <a href="https://timezonedb.com/time-zones">TZ Name</a> format  | `Europe/Rome`  |
+| `DJANGO_SUPERUSER_USERNAME`  | Username for login  | `admin`  |
+| `DJANGO_SUPERUSER_PASSWORD`  | Password for login  | `admin`  |
 
-  1:
-    ip: 192.168.144.20:5000
-    cameras:
-      - CAM3
-      - CAM4
-```
+## Config
+At the first login you will be redirected to the dashboard, where you can set the IP of Frigate, and the name of cameras, separated by comma.
+
+Also in the dashboard, you can logout from the session, change the password, change language, and edit/add/remove instances of Frigate (See screenshots below)
 
 ## Problems / Questions
-As with any beta, there may be some bugs and frequent updates, but we encourage you to report any issues!<br><br>
+There may be some bugs and frequent updates, but we encourage you to report any issues!<br><br>
 <b>Email:</b> flurga@vcardone.it - <b>Discord:</b> Block2Paz#4884
 
 ## Screenshot
-<p align="center"><img src="images/login.png"></p>
-<p align="center"><img src="images/home.png"></p>
-<p align="center"><img src="images/events.png"></p>
-<p align="center"><img src="images/recordings.png"></p>
+<p align="center"><img src="https://i.ibb.co/B67Mrn7/Home.png"></p>
+<p align="center"><img src="https://i.ibb.co/R3MYDHz/Dashboard.png"></p>
+<p align="center"><img src="https://i.ibb.co/LSqZXRR/Dashboard-Conf.png"></p>
+<p align="center"><img src="https://i.ibb.co/2sMF0hc/Other.png"></p>

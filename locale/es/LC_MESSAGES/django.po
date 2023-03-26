@@ -1,0 +1,160 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flurga\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-26 11:15+0200\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+
+#: .\Flurga\settings.py:97
+msgid "English"
+msgstr "Inglés"
+
+#: .\Flurga\settings.py:98
+msgid "Spanish"
+msgstr "Español"
+
+#: .\Flurga\settings.py:99
+msgid "French"
+msgstr "Francés"
+
+#: .\Flurga\settings.py:100
+msgid "Italian"
+msgstr "Italiano"
+
+#: .\Flurga\settings.py:101
+msgid "German"
+msgstr "Alemán"
+
+#: .\main\templates\main\changepw.html:30
+msgid "Old password"
+msgstr "Contraseña anterior"
+
+#: .\main\templates\main\changepw.html:32
+msgid "Please fill in your old password"
+msgstr "Por favor complete su antigua contraseña"
+
+#: .\main\templates\main\changepw.html:35
+msgid "New password"
+msgstr "Nueva contraseña"
+
+#: .\main\templates\main\changepw.html:37
+msgid "Please fill in your new password"
+msgstr "Por favor complete su nueva contraseña"
+
+#: .\main\templates\main\changepw.html:40
+msgid "Confirm new password"
+msgstr "Confirmar nueva contraseña"
+
+#: .\main\templates\main\changepw.html:42
+msgid "Please confirm your new password"
+msgstr "Por favor confirme su nueva contraseña"
+
+#: .\main\templates\main\changepw.html:45
+msgid "Change"
+msgstr "Cambiar"
+
+#: .\main\templates\main\dashboard.html:29 .\main\templates\main\events.html:29
+#: .\main\templates\main\recordings.html:31
+msgid "Home"
+msgstr "Home"
+
+#: .\main\templates\main\dashboard.html:30 .\main\templates\main\index.html:31
+#: .\main\templates\main\recordings.html:32
+msgid "Events"
+msgstr "Eventos"
+
+#: .\main\templates\main\dashboard.html:31 .\main\templates\main\events.html:30
+#: .\main\templates\main\index.html:32
+msgid "Recordings"
+msgstr "Grabaciones"
+
+#: .\main\templates\main\dashboard.html:49
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: .\main\templates\main\dashboard.html:57
+msgid "Change login password"
+msgstr "Cambiar contraseña de inicio de sesión"
+
+#: .\main\templates\main\dashboard.html:73
+#: .\main\templates\main\dashboard.html:92
+msgid "Frigate IP"
+msgstr "Frigate IP"
+
+#: .\main\templates\main\dashboard.html:77
+#: .\main\templates\main\dashboard.html:96
+msgid "Cams"
+msgstr "Cámaras (separado por comas)"
+
+#: .\main\templates\main\dashboard.html:81
+msgid "Save"
+msgstr "Ahorrar"
+
+#: .\main\templates\main\dashboard.html:100
+msgid "Add"
+msgstr "Agregar"
+
+#: .\main\templates\main\events.html:40
+msgid "Delete all events"
+msgstr "Eliminar todos los eventos"
+
+#: .\main\templates\main\events.html:54
+msgid "View clip"
+msgstr "Ver vídeo"
+
+#: .\main\templates\main\index.html:43
+msgid "Date"
+msgstr "Fecha"
+
+#: .\main\templates\main\index.html:56
+msgid "Start time"
+msgstr "Hora de inicio"
+
+#: .\main\templates\main\index.html:60
+msgid "End time"
+msgstr "Hora de finalización"
+
+#: .\main\templates\main\index.html:66
+msgid "Search"
+msgstr "Buscar"
+
+#: .\main\templates\main\index.html:79 .\main\templates\main\recordings.html:44
+msgid "Download video"
+msgstr "Descargar video"
+
+#: .\main\templates\main\login.html:30
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: .\main\templates\main\login.html:32
+msgid "Please fill in your username"
+msgstr "Por favor complete su nombre de usuario"
+
+#: .\main\templates\main\login.html:35
+msgid "Password"
+msgstr "Contraseña"
+
+#: .\main\templates\main\login.html:37
+msgid "Please fill in your password"
+msgstr "Por favor complete su contraseña"
+
+#: .\main\templates\main\login.html:40
+msgid "Login"
+msgstr "Acceso"
+
+#: .\main\views.py:49
+msgid "Error, check your credentials!"
+msgstr "¡Error, verifique sus credenciales!"
+
+#: .\main\views.py:68 .\main\views.py:102 .\main\views.py:161
+#: .\main\views.py:233
+msgid "Config error, please check the configuration below!"
+msgstr "Error de configuración, ¡verifique la configuración a continuación!"
+
+#: .\main\views.py:182
+msgid "Error, check the passwords!"
+msgstr "¡Error, revisa las contraseñas!"

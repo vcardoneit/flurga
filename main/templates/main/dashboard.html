@@ -1,0 +1,109 @@
+{% load static %}
+{% load i18n %}
+<html>
+
+<head>
+    <title>Dashboard | Flurga</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="{% static 'site.webmanifest' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-italia.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <script>window.__PUBLIC_PATH__ = "{% static 'webfonts/' %}"</script>
+</head>
+
+<body>
+    <div class="container-fluid bg-primary pt-2 pb-2">
+        <div class="row">
+            <div class="col-sm text-center">
+                <a href="./">
+                    <h3 class="text-white">Flurga</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid primary-bg-b3 pt-2 pb-2">
+        <div class="row justify-content-end">
+            <div class="col-sm text-center">
+                <a href="./" class="text-white text-decoration-none me-2">{% trans "Home" %}</a>
+                <a href="events" class="text-white text-decoration-none me-2">{% trans "Events" %}</a>
+                <a href="recordings" class="text-white text-decoration-none me-2">{% trans "Recordings" %}</a>
+                {% get_current_language as CURRENT_LANGUAGE %}
+                {% get_available_languages as AVAILABLE_LANGUAGES %}
+                {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+                <select onchange="location = this.value;" style="border-radius: 10px;">
+                    {% for language in languages %}
+                    <option value="/{{ language.code }}/" {% if language.code == CURRENT_LANGUAGE %} selected{% endif %}>{{ language.code }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <form method="post" action="{% url 'logout' %}" style="margin-bottom: 0;">
+            {% csrf_token %}
+            <div class="row justify-content-center align-items-center" style="padding-top:15px">
+                <div class="form-group mb-0 text-center">
+                    <button type="submit" name="button" formmethod="post" class="btn btn-primary">{% trans "Logout" %}</button>
+                </div>
+            </div>
+        </form>
+        <form method="post" action="{% url 'changepw' %}">
+            {% csrf_token %}
+            <div class="row justify-content-center align-items-center" style="padding-top:15px">
+                <div class="form-group mb-0 text-center">
+                    <button type="submit" name="button" formmethod="post" class="btn btn-primary">{% trans "Change login password" %}</button>
+                </div>
+            </div>
+        </form>
+
+        {% if error %}
+        <div class="alert alert-danger" style="background-color: white;" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        {% for record in records %}
+        <form method="post" action="{% url 'edtRec' id=record.id %}">
+            {% csrf_token %}
+            <div class="row justify-content-center align-items-center rounded" style="padding-top:35px;background-color: #dedede;">
+                <div class="form-group col-md-3 mb-4">
+                    <label class="active" for="frigateIP{{ record.id }}">{% trans "Frigate IP" %}</label>
+                    <input class="form-control" id="frigateIP{{ record.id }}" name="frigateIP" type="text" value="{{ record.frigateIP }}" required>
+                </div>
+                <div class="form-group col-md-3 mb-4">
+                    <label class="active" for="cams{{ record.id }}">{% trans "Cams" %}</label>
+                    <input class="form-control" id="cams{{ record.id }}" name="cams" type="text" value="{{ record.cams }}" required>
+                </div>
+                <div class="form-group col-md-3 text-center mb-4">
+                    <button type="submit" name="button" formmethod="post" class="btn btn-primary">{% trans "Save" %}</button>
+                    <button type="submit" name="button" formmethod="post" formaction="{% url 'delRec' id=record.id %}" class="btn btn-primary ms-3 me-3"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </form>
+        {% endfor %}
+        
+        <form method="post" action="{% url 'addRec' %}">
+            {% csrf_token %}
+            <div class="row justify-content-center align-items-center rounded" style="padding-top:35px;background-color: #dedede;">
+                <div class="form-group col-md-2 mb-4">
+                    <label class="active" for="frigateIP">{% trans "Frigate IP" %}</label>
+                    <input class="form-control" id="frigateIP" name="frigateIP" type="text" required>
+                </div>
+                <div class="form-group col-md-2 mb-4">
+                    <label class="active" for="cams">{% trans "Cams" %}</label>
+                    <input class="form-control" id="cams" name="cams" type="text" required>
+                </div>
+                <div class="form-group col-md-2 text-center mb-4">
+                    <button type="submit" name="button" formmethod="post" class="btn btn-primary">{% trans "Add" %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/bootstrap-italia.bundle.min.js' %}"></script>
+</body>
+
+</html>

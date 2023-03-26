@@ -1,0 +1,66 @@
+{% load static %}
+{% load i18n %}
+<html>
+
+<head>
+    <title>Events | Flurga</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="{% static 'site.webmanifest' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-italia.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <script>window.__PUBLIC_PATH__ = "{% static 'webfonts/' %}"</script>
+</head>
+
+<body class="neutral-2-bg">
+    <div class="container-fluid bg-primary pt-2 pb-2">
+        <div class="row">
+            <div class="col-sm text-center">
+                <a href="./">
+                    <h3 class="text-white">Flurga</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid primary-bg-b3 pt-2 pb-2 shadow">
+        <div class="row">
+            <div class="col-sm text-center">
+                <a href="./" class="text-white text-decoration-none me-2">{% trans "Home" %}</a>
+                <a href="recordings" class="text-white text-decoration-none me-2">{% trans "Recordings" %}</a>
+                <a href="dashboard" class="text-white text-decoration-none"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="form-group mt-3 mb-0">
+                    <form action="{% url 'events' %}" class="mb-0" method="post">{% csrf_token %}<button type="submit" name="dall" formmethod="post" class="btn btn-primary" style="width:100%" onclick="return confirm('Are you sure?')">{% trans "Delete all events" %}</button></form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% load index %}
+    <div class="row justify-content-center" style="padding-top:25px;margin: auto">
+        {% for x in id %}
+        <div class="col-lg-3 mb-3">
+            <div class="card-wrapper">
+                <div class="card card-bg no-after">
+                    <img src="{{ snapshot|index:x }}" width="100%" class="img-fluid" />
+                    <div class="card-body">
+                        <h3 class="card-title h5 ">{{ title|index:x }}<p class="card-text">{{ time|index:x }}</p></h3>
+                        <p class="card-text"><a href="{{ clip|index:x }}" target="_blank">{% trans "View clip" %}</a></p>
+                        <form action="{% url 'events' %}" style="margin-bottom:0px">{% csrf_token %}<button class="btn btn-primary" type="submit" formmethod="post" name="del" value="{{ delt|index:x }}"><i class="fa-regular fa-trash-can"></i></button></form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="{% static 'js/bootstrap-italia.bundle.min.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+{% load static %}
+{% load i18n %}
+<html>
+
+<head>
+    <title>Recordings | Flurga</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="{% static 'site.webmanifest' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-italia.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <script>window.__PUBLIC_PATH__ = "{% static 'webfonts/' %}"</script>
+    <link rel="stylesheet" href="{% static 'css/video-js.css' %}" />
+    <script src="{% static 'js/video.min.js' %}"></script>
+</head>
+
+<body class="neutral-2-bg">
+    <div class="container-fluid bg-primary pt-2 pb-2">
+        <div class="row">
+            <div class="col-sm text-center">
+                <a href="./">
+                    <h3 class="text-white">Flurga</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid primary-bg-b3 pt-2 pb-2 shadow">
+        <div class="row">
+            <div class="col-sm text-center">
+                <a href="./" class="text-white text-decoration-none me-2">{% trans "Home" %}</a>
+                <a href="events" class="text-white text-decoration-none me-2">{% trans "Events" %}</a>
+                <a href="dashboard" class="text-white text-decoration-none"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid p-4">
+        {% if sLink %}
+        <div class="container" style="width:100%;height:50%;padding-bottom:25px">
+            <video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">
+                <source src="{{ sLink }}" type="application/x-mpegURL">
+            </video>
+            <a href="{{ dLink }}" target="_blank" download="a.mp4">{% trans "Download video" %}</a>
+        </div><br>
+        {% endif %}
+
+        {% for x in recordings %}
+            {% for cam,b in x.items %}
+                <div class="link-list-wrapper d-flex justify-content-center ">
+                <ul class="link-list primary-bg">
+                <li class="p-3">
+                <a class="list-item large medium" href="#{{ cam }}" data-bs-toggle="collapse" aria-expanded="false" aria-controls="{{ cam }}">
+                <span class="list-item-title-icon-wrapper">
+                <span class="list-item-title text-white">{{ cam }}</span>
+                <svg class="icon icon-primary"><i class="fa-solid fa-angle-down text-white"></i></svg>
+                </span>
+                </a>
+                {% for c, g in b.items %}
+                    {% for k in g %}
+                        {% for data, e in k.items %}
+                            <ul class="link-sublist collapse" id="{{ cam }}">
+                            <li>
+                            <a class="list-item" href="#{{ cam }}{{ data | date:"d m Y" | cut:" " }}" data-bs-toggle="collapse" aria-expanded="false" aria-controls="{{ cam }}{{ data | date:"d m Y" | cut:" " }}">
+                            <span class="list-item-title-icon-wrapper">
+                            <span class="list-item-title text-white">{{ data | date:"d M Y" }}</span>
+                            <svg class="icon icon-primary"><i class="fa-solid fa-angle-down text-white"></i></svg>
+                            </span>
+                            </a>
+                            <ul class="link-sublist collapse" id="{{ cam }}{{ data | date:"d m Y" | cut:" " }}">
+                            {% for p in e %}
+                                {% for ora, link in p.items %}
+                                <li><a class="list-item" href="{{ link }}"><span class="text-white">{{ ora }}</span></a></li>
+                                {% endfor %}
+                            {% endfor %}
+                            </ul>
+                            </li>
+                            </ul>
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+                </li>
+                </ul>
+                </div>
+            {% endfor %}      
+        {% endfor %}      
+      
+    </div>
+
+    <br>
+
+    <script src="{% static 'js/bootstrap-italia.bundle.min.js' %}"></script>
+</body>
+
+</html>

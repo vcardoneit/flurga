@@ -1,36 +1,31 @@
-FROM alpine:latest
-LABEL Maintainer="Vincenzo Cardone <info@vcardone.it>"
-LABEL Description="Flurga is a web interface for Frigate NVR"
-WORKDIR /flurga/public
-RUN apk add --no-cache \
-  curl \
-  nginx \
-  php81 \
-  php81-ctype \
-  php81-curl \
-  php81-dom \
-  php81-pecl-yaml \
-  php81-fpm \
-  php81-gd \
-  php81-intl \
-  php81-mbstring \
-  php81-mysqli \
-  php81-opcache \
-  php81-openssl \
-  php81-phar \
-  php81-session \
-  php81-xml \
-  php81-xmlreader \
-  supervisor
-RUN ln -sf /usr/bin/php81 /usr/bin/php
-COPY config/nginx.conf /etc/nginx/nginx.conf
-COPY config/fpm-pool.conf /etc/php81/php-fpm.d/www.conf
-COPY config/php.ini /etc/php81/conf.d/custom.ini
-COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN chown -R nobody.nobody /flurga/public /run /var/lib/nginx /var/log/nginx /flurga
-USER nobody
-COPY --chown=nobody /public/ /flurga/public/
-COPY --chown=nobody config.yml /flurga/config.yml
-EXPOSE 8080
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
+FROM python:alpine3.17
+
+ENV FlurgaPath = /home/Flurga
+
+RUN mkdir -p $FlurgaPath
+
+COPY . $FlurgaPath
+
+WORKDIR $FlurgaPath
+
+ENV PYTHONDONTWRITEBYTECODE 1
+
+ENV PYTHONUNBUFFERED 1
+
+RUN pip install -r requirements.txt
+
+RUN python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())" > /home/skey.txt
+
+ENV TIME_ZONE Europe/Rome
+
+RUN python manage.py migrate
+
+ENV DJANGO_SUPERUSER_USERNAME admin
+ENV DJANGO_SUPERUSER_PASSWORD admin
+ENV DJANGO_SUPERUSER_EMAIL admin@admin.com
+
+RUN python manage.py createsuperuser --noinput
+
+EXPOSE 1923/tcp
+
+CMD python manage.py runserver --insecure 0.0.0.0:1923

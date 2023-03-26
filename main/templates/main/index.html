@@ -1,0 +1,93 @@
+{% load static %}
+{% load i18n %}
+<html>
+
+<head>
+    <title>Flurga</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="{% static 'site.webmanifest' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-italia.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <script>window.__PUBLIC_PATH__ = "{% static 'webfonts/' %}"</script>
+    <link rel="stylesheet" href="{% static 'css/video-js.css' %}" />
+    <script src="{% static 'js/video.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="container-fluid bg-primary pt-2 pb-2">
+        <div class="row">
+            <div class="col-sm text-center">
+                <a href="./">
+                    <h3 class="text-white">Flurga</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid primary-bg-b3 pt-2 pb-2 shadow">
+        <div class="row">
+            <div class="col-sm text-center">
+                <a href="events" class="text-white text-decoration-none me-2">{% trans "Events" %}</a>
+                <a href="recordings" class="text-white text-decoration-none me-2">{% trans "Recordings" %}</a>
+                <a href="dashboard" class="text-white text-decoration-none me-2"> <i class="fa-regular fa-user"></i></a>
+            </div>
+        </div>
+    </div>
+
+    {% load index %}
+    <div class="container">
+        <form method="post" action="{% url 'index' %}">
+            {% csrf_token %}
+            <div class="row justify-content-center align-items-center" style="margin-top:40px">
+                <div class="form-group col-md-3">
+                    <label class="active" for="giorno">{% trans "Date" %}</label>
+                    <input type="date" id="giorno" name="giorno" required>
+                </div>
+                <div class="form-group col-md-3 text-center" style="margin-bottom:0px">
+                    {% for fist in cameras %}
+                    {% for cams in fist.values %}
+                    <div class="form-check">
+                        {% for cam in cams %}
+                        <input name="camls[]" id="{{ cam }}" value="{{ cam }}" type="checkbox"><label for="{{ cam }}" required>{{ cam }}</label>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group col-md-3">
+                    <label class="active" for="oraInizio">{% trans "Start time" %}</label>
+                    <input class="form-control" id="oraInizio" name="oraInizio" type="time" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="active" for="oraFine">{% trans "End time" %}</label>
+                    <input class="form-control" id="oraFine" name="oraFine" type="time" required>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="form-group col-md-3" style="margin-top:-25px;margin-bottom:15px">
+                    <button type="submit" name="button" formmethod="post" class="btn btn-primary" style="width:100%">{% trans "Search" %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    {% if id %}
+    {% for x in id %}
+    <div class="container" style="width:100%;height:50%;padding-bottom:25px">
+        <video id="my_video_1" class="video-js" controls preload="auto" style="width:100%;height:100%" data-setup="{}">
+            <source src="{{ videoLink|index:x }}" type="application/x-mpegURL">
+        </video>
+        <a href="{{ downLink|index:x }}" target="_blank" download="a.mp4">{% trans "Download video" %}</a>
+    </div><br>
+    {% endfor %}
+    {% endif %}
+
+    <br>
+
+    <script src="{% static 'js/bootstrap-italia.bundle.min.js' %}"></script>
+</body>
+
+</html>

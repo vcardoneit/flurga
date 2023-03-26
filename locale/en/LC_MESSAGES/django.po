@@ -1,0 +1,160 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flurga\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-26 11:15+0200\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+
+#: .\Flurga\settings.py:97
+msgid "English"
+msgstr ""
+
+#: .\Flurga\settings.py:98
+msgid "Spanish"
+msgstr ""
+
+#: .\Flurga\settings.py:99
+msgid "French"
+msgstr ""
+
+#: .\Flurga\settings.py:100
+msgid "Italian"
+msgstr ""
+
+#: .\Flurga\settings.py:101
+msgid "German"
+msgstr ""
+
+#: .\main\templates\main\changepw.html:30
+msgid "Old password"
+msgstr ""
+
+#: .\main\templates\main\changepw.html:32
+msgid "Please fill in your old password"
+msgstr ""
+
+#: .\main\templates\main\changepw.html:35
+msgid "New password"
+msgstr ""
+
+#: .\main\templates\main\changepw.html:37
+msgid "Please fill in your new password"
+msgstr ""
+
+#: .\main\templates\main\changepw.html:40
+msgid "Confirm new password"
+msgstr ""
+
+#: .\main\templates\main\changepw.html:42
+msgid "Please confirm your new password"
+msgstr ""
+
+#: .\main\templates\main\changepw.html:45
+msgid "Change"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:29 .\main\templates\main\events.html:29
+#: .\main\templates\main\recordings.html:31
+msgid "Home"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:30 .\main\templates\main\index.html:31
+#: .\main\templates\main\recordings.html:32
+msgid "Events"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:31 .\main\templates\main\events.html:30
+#: .\main\templates\main\index.html:32
+msgid "Recordings"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:49
+msgid "Logout"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:57
+msgid "Change login password"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:73
+#: .\main\templates\main\dashboard.html:92
+msgid "Frigate IP"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:77
+#: .\main\templates\main\dashboard.html:96
+msgid "Cams"
+msgstr "Cams (separated by commas)"
+
+#: .\main\templates\main\dashboard.html:81
+msgid "Save"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:100
+msgid "Add"
+msgstr ""
+
+#: .\main\templates\main\events.html:40
+msgid "Delete all events"
+msgstr ""
+
+#: .\main\templates\main\events.html:54
+msgid "View clip"
+msgstr ""
+
+#: .\main\templates\main\index.html:43
+msgid "Date"
+msgstr ""
+
+#: .\main\templates\main\index.html:56
+msgid "Start time"
+msgstr ""
+
+#: .\main\templates\main\index.html:60
+msgid "End time"
+msgstr ""
+
+#: .\main\templates\main\index.html:66
+msgid "Search"
+msgstr ""
+
+#: .\main\templates\main\index.html:79 .\main\templates\main\recordings.html:44
+msgid "Download video"
+msgstr ""
+
+#: .\main\templates\main\login.html:30
+msgid "Username"
+msgstr ""
+
+#: .\main\templates\main\login.html:32
+msgid "Please fill in your username"
+msgstr ""
+
+#: .\main\templates\main\login.html:35
+msgid "Password"
+msgstr ""
+
+#: .\main\templates\main\login.html:37
+msgid "Please fill in your password"
+msgstr ""
+
+#: .\main\templates\main\login.html:40
+msgid "Login"
+msgstr ""
+
+#: .\main\views.py:49
+msgid "Error, check your credentials!"
+msgstr ""
+
+#: .\main\views.py:68 .\main\views.py:102 .\main\views.py:161
+#: .\main\views.py:233
+msgid "Config error, please check the configuration below!"
+msgstr ""
+
+#: .\main\views.py:182
+msgid "Error, check the passwords!"
+msgstr ""
