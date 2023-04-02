@@ -50,8 +50,6 @@ TEMPLATES = [
     },
 ]
 
-CSRF_COOKIE_SECURE = True
-
 WSGI_APPLICATION = 'Flurga.wsgi.application'
 
 DATABASES = {
