@@ -12,7 +12,7 @@
 - **View and delete events**
 - **View recordings**
 
-## Installation with Docker <a href="https://hub.docker.com/r/bthuderous/flurga">(bthuderous/flurga)</a>
+## Installation with Docker
 #### Docker compose
 ```yaml
 version: '3.3'
@@ -22,11 +22,11 @@ services:
         restart: unless-stopped
         ports:
             - '1923:1923'
-        image: 'bthuderous/flurga:latest'
+        image: 'ghcr.io/vcardoneit/flurga'
 ```
 #### Docker run
 ```
-docker run -d --name Flurga --restart unless-stopped -p 1923:1923 bthuderous/flurga:latest
+docker run -d --name Flurga --restart unless-stopped -p 1923:1923 ghcr.io/vcardoneit/flurga
 ```
 
 #### Environment Variables
