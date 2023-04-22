@@ -101,6 +101,19 @@
                 </div>
             </div>
         </form>
+
+        <form method="post" action="{% url 'edtLev' %}">
+            {% csrf_token %}
+            <div class="row justify-content-center align-items-center rounded" style="padding-top:35px;background-color: #dedede;">
+                <div class="form-group col-md-2 mb-4">
+                    <label class="active" for="nLev">{% trans "Number limit of events" %} (-1 infinite)</label>
+                    <input class="form-control" id="nLev" name="nLev" type="text" value="{{ limits }}" required>
+                </div>
+                <div class="form-group col-md-2 text-center mb-4">
+                    <button type="submit" name="button" formmethod="post" class="btn btn-primary">{% trans "Save" %}</button>
+                </div>
+            </div>
+        </form>
     </div>
 
     <script src="{% static 'js/bootstrap-italia.bundle.min.js' %}"></script>

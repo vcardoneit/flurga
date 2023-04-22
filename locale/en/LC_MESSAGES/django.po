@@ -2,30 +2,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flurga\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 11:15+0200\n"
+"POT-Creation-Date: 2023-04-22 17:38+0200\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 
-#: .\Flurga\settings.py:97
+#: .\Flurga\settings.py:99
 msgid "English"
 msgstr ""
 
-#: .\Flurga\settings.py:98
+#: .\Flurga\settings.py:100
 msgid "Spanish"
 msgstr ""
 
-#: .\Flurga\settings.py:99
+#: .\Flurga\settings.py:101
 msgid "French"
 msgstr ""
 
-#: .\Flurga\settings.py:100
+#: .\Flurga\settings.py:102
 msgid "Italian"
 msgstr ""
 
-#: .\Flurga\settings.py:101
+#: .\Flurga\settings.py:103
 msgid "German"
 msgstr ""
 
@@ -91,11 +91,16 @@ msgid "Cams"
 msgstr "Cams (separated by commas)"
 
 #: .\main\templates\main\dashboard.html:81
+#: .\main\templates\main\dashboard.html:113
 msgid "Save"
 msgstr ""
 
 #: .\main\templates\main\dashboard.html:100
 msgid "Add"
+msgstr ""
+
+#: .\main\templates\main\dashboard.html:109
+msgid "Number limit of events"
 msgstr ""
 
 #: .\main\templates\main\events.html:40
@@ -106,23 +111,23 @@ msgstr ""
 msgid "View clip"
 msgstr ""
 
-#: .\main\templates\main\index.html:43
+#: .\main\templates\main\index.html:44
 msgid "Date"
 msgstr ""
 
-#: .\main\templates\main\index.html:56
+#: .\main\templates\main\index.html:61
 msgid "Start time"
 msgstr ""
 
-#: .\main\templates\main\index.html:60
+#: .\main\templates\main\index.html:65
 msgid "End time"
 msgstr ""
 
-#: .\main\templates\main\index.html:66
+#: .\main\templates\main\index.html:71
 msgid "Search"
 msgstr ""
 
-#: .\main\templates\main\index.html:79 .\main\templates\main\recordings.html:44
+#: .\main\templates\main\index.html:83 .\main\templates\main\recordings.html:44
 msgid "Download video"
 msgstr ""
 
@@ -146,15 +151,15 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: .\main\views.py:49
+#: .\main\views.py:52
 msgid "Error, check your credentials!"
 msgstr ""
 
-#: .\main\views.py:68 .\main\views.py:102 .\main\views.py:161
-#: .\main\views.py:233
+#: .\main\views.py:74 .\main\views.py:120 .\main\views.py:138
+#: .\main\views.py:196 .\main\views.py:296
 msgid "Config error, please check the configuration below!"
 msgstr ""
 
-#: .\main\views.py:182
+#: .\main\views.py:217 .\main\views.py:221
 msgid "Error, check the passwords!"
 msgstr ""

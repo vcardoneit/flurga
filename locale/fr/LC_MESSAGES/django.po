@@ -2,30 +2,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flurga\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 11:15+0200\n"
+"POT-Creation-Date: 2023-04-22 17:38+0200\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 
-#: .\Flurga\settings.py:97
+#: .\Flurga\settings.py:99
 msgid "English"
 msgstr "Anglais"
 
-#: .\Flurga\settings.py:98
+#: .\Flurga\settings.py:100
 msgid "Spanish"
 msgstr "Espagnol"
 
-#: .\Flurga\settings.py:99
+#: .\Flurga\settings.py:101
 msgid "French"
 msgstr "Français"
 
-#: .\Flurga\settings.py:100
+#: .\Flurga\settings.py:102
 msgid "Italian"
 msgstr "Italien"
 
-#: .\Flurga\settings.py:101
+#: .\Flurga\settings.py:103
 msgid "German"
 msgstr "Allemand"
 
@@ -91,12 +91,17 @@ msgid "Cams"
 msgstr "Cams (séparé par des virgules)"
 
 #: .\main\templates\main\dashboard.html:81
+#: .\main\templates\main\dashboard.html:113
 msgid "Save"
 msgstr "Sauvegarder"
 
 #: .\main\templates\main\dashboard.html:100
 msgid "Add"
 msgstr "Ajouter"
+
+#: .\main\templates\main\dashboard.html:109
+msgid "Number limit of events"
+msgstr ""
 
 #: .\main\templates\main\events.html:40
 msgid "Delete all events"
@@ -106,23 +111,23 @@ msgstr "Supprimer tous les événements"
 msgid "View clip"
 msgstr "Voir le clip"
 
-#: .\main\templates\main\index.html:43
+#: .\main\templates\main\index.html:44
 msgid "Date"
 msgstr "Date"
 
-#: .\main\templates\main\index.html:56
+#: .\main\templates\main\index.html:61
 msgid "Start time"
 msgstr "Heure de début"
 
-#: .\main\templates\main\index.html:60
+#: .\main\templates\main\index.html:65
 msgid "End time"
 msgstr "Heure de fin"
 
-#: .\main\templates\main\index.html:66
+#: .\main\templates\main\index.html:71
 msgid "Search"
 msgstr "Recherche"
 
-#: .\main\templates\main\index.html:79 .\main\templates\main\recordings.html:44
+#: .\main\templates\main\index.html:83 .\main\templates\main\recordings.html:44
 msgid "Download video"
 msgstr "Télécharger la video"
 
@@ -146,16 +151,16 @@ msgstr "Merci de renseigner votre mot de passe"
 msgid "Login"
 msgstr "Connexion"
 
-#: .\main\views.py:49
+#: .\main\views.py:52
 msgid "Error, check your credentials!"
 msgstr "Erreur, vérifiez vos identifiants !"
 
-#: .\main\views.py:68 .\main\views.py:102 .\main\views.py:161
-#: .\main\views.py:233
+#: .\main\views.py:74 .\main\views.py:120 .\main\views.py:138
+#: .\main\views.py:196 .\main\views.py:296
 msgid "Config error, please check the configuration below!"
 msgstr ""
 "Erreur de configuration, veuillez vérifier la configuration ci-dessous !"
 
-#: .\main\views.py:182
+#: .\main\views.py:217 .\main\views.py:221
 msgid "Error, check the passwords!"
 msgstr "Erreur, vérifiez les mots de passe !"

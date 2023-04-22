@@ -16,4 +16,5 @@ urlpatterns = [
     path('dashboard/edt/<int:id>', views.edtRec, name='edtRec'),
     path('dashboard/del/<int:id>', views.delRec, name='delRec'),
     path('dashboard/addRec', views.addRec, name='addRec'),
+    path('dashboard/edtLev', views.edtLev, name='edtLev'),
 ]

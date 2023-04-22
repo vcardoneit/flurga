@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.hashers import check_password
 from django.http import HttpResponse
 from django.template import loader
-from .models import config
+from .models import config, limit
 
 
 def getCams():
@@ -68,7 +68,10 @@ def index(request):
         if cams == "getCamsError":
             template = loader.get_template('main/dashboard.html')
             records = config.objects.all()
-            context = {'error': _('Config error, please check the configuration below!'), 'records': records}
+            if not limit.objects.filter(pk=1):
+                limit.objects.create(events=300)
+            limits = limit.objects.get(pk=1)
+            context = {'error': _('Config error, please check the configuration below!'), 'records': records, 'limits': limits.events}
             return HttpResponse(template.render(context, request))
 
         dataInizio = data + " " + oraI
@@ -111,7 +114,10 @@ def index(request):
         if cams == "getCamsError":
             template = loader.get_template('main/dashboard.html')
             records = config.objects.all()
-            context = {'error': _('Config error, please check the configuration below!'), 'records': records}
+            if not limit.objects.filter(pk=1):
+                limit.objects.create(events=300)
+            limits = limit.objects.get(pk=1)
+            context = {'error': _('Config error, please check the configuration below!'), 'records': records, 'limits': limits.events}
             return HttpResponse(template.render(context, request))
         else:
             template = loader.get_template('main/index.html')
@@ -126,7 +132,10 @@ def events(request):
     if getCams() == "getCamsError":
         template = loader.get_template('main/dashboard.html')
         records = config.objects.all()
-        context = {'error': _('Config error, please check the configuration below!'), 'records': records}
+        if not limit.objects.filter(pk=1):
+            limit.objects.create(events=300)
+        limits = limit.objects.get(pk=1)
+        context = {'error': _('Config error, please check the configuration below!'), 'records': records, 'limits': limits.events}
         return HttpResponse(template.render(context, request))
 
     if request.method == 'POST' and 'del' in request.POST:
@@ -147,12 +156,17 @@ def events(request):
 
         return redirect('events')
 
+    if not limit.objects.filter(pk=1):
+        limit.objects.create(events=300)
+    limits = limit.objects.get(pk=1)
+    nEvents = limits.events
+    
     cfg = config.objects.values()
     title, snapshot, clip, delt, time = ([] for i in range(5))
     try:
         for x in range(len(cfg)):
             frigateIP = cfg[x]['frigateIP']
-            URL = "http://" + frigateIP + "/api/events?limit=300"  # -1 infinite
+            URL = "http://" + frigateIP + "/api/events?limit=" + str(nEvents)  # -1 infinite
             data = requests.get(url=URL, timeout=2).json()
             print(data)
 
@@ -176,7 +190,10 @@ def events(request):
     except Exception:
         template = loader.get_template('main/dashboard.html')
         records = config.objects.all()
-        context = {'error': _('Config error, please check the configuration below!'), 'records': records}
+        if not limit.objects.filter(pk=1):
+            limit.objects.create(events=300)
+        limits = limit.objects.get(pk=1)
+        context = {'error': _('Config error, please check the configuration below!'), 'records': records, 'limits': limits.events}
         return HttpResponse(template.render(context, request))
 
 
@@ -210,7 +227,10 @@ def changepw(request):
 @login_required
 def dashboard(request):
     records = config.objects.all()
-    return render(request, 'main/dashboard.html', {'records': records})
+    if not limit.objects.filter(pk=1):
+        limit.objects.create(events=300)
+    limits = limit.objects.get(pk=1)
+    return render(request, 'main/dashboard.html', {'records': records, 'limits': limits.events})
 
 
 @login_required
@@ -246,6 +266,15 @@ def addRec(request):
     else:
         return redirect("dashboard")
 
+@login_required
+def edtLev(request):
+    if request.method == 'POST':
+        limits = limit.objects.get(pk=1)
+        limits.events = request.POST.get("nLev")
+        limits.save()
+        return redirect("dashboard")
+    else:
+        return redirect("dashboard")
 
 @login_required
 def logout(request):
@@ -261,7 +290,10 @@ def recordings(request):
     if cams == "getCamsError":
         template = loader.get_template('main/dashboard.html')
         records = config.objects.all()
-        context = {'error': _('Config error, please check the configuration below!'), 'records': records}
+        if not limit.objects.filter(pk=1):
+            limit.objects.create(events=300)
+        limits = limit.objects.get(pk=1)
+        context = {'error': _('Config error, please check the configuration below!'), 'records': records, 'limits': limits.events}
         return HttpResponse(template.render(context, request))
 
     recordings = []
