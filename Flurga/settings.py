@@ -1,13 +1,17 @@
 import os
+import environ
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
+TIME_ZONE = os.getenv('TIME_ZONE')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open('/home/skey.txt') as f:
-    SECRET_KEY = f.read().strip()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-DEBUG = False
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+DEBUG = eval(os.getenv('DEBUG', 'False'))
 
 ALLOWED_HOSTS = ['*']
 
@@ -76,14 +80,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 
-TIME_ZONE = os.getenv('TIME_ZONE')
-
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
 
 STATIC_URL = 'static/'
 

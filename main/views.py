@@ -160,7 +160,7 @@ def events(request):
         limit.objects.create(events=300)
     limits = limit.objects.get(pk=1)
     nEvents = limits.events
-    
+
     cfg = config.objects.values()
     title, snapshot, clip, delt, time = ([] for i in range(5))
     try:
@@ -266,6 +266,7 @@ def addRec(request):
     else:
         return redirect("dashboard")
 
+
 @login_required
 def edtLev(request):
     if request.method == 'POST':
@@ -275,6 +276,7 @@ def edtLev(request):
         return redirect("dashboard")
     else:
         return redirect("dashboard")
+
 
 @login_required
 def logout(request):
