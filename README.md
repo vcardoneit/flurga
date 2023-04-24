@@ -50,5 +50,5 @@ There may be some bugs and frequent updates, but we encourage you to report any 
 ## Screenshot
 <p align="center"><img src="https://i.ibb.co/B67Mrn7/Home.png"></p>
 <p align="center"><img src="https://i.ibb.co/R3MYDHz/Dashboard.png"></p>
-<p align="center"><img src="https://i.ibb.co/LSqZXRR/Dashboard-Conf.png"></p>
+<p align="center"><img src="https://i.ibb.co/qgTF0tF/Dashboard-Conf.png"></p>
 <p align="center"><img src="https://i.ibb.co/2sMF0hc/Other.png"></p>
