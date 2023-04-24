@@ -1,3 +1,2 @@
 Django==4.1.7
-django_environ==0.10.0
 Requests==2.28.2

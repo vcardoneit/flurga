@@ -1,15 +1,11 @@
 import os
-import environ
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
 from django.utils.translation import gettext_lazy as _
-
-TIME_ZONE = os.getenv('TIME_ZONE')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 
 DEBUG = eval(os.getenv('DEBUG', 'False'))
 
@@ -79,6 +75,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en'
+
+TIME_ZONE = os.getenv('TIME_ZONE', 'Europe/Rome')
 
 USE_I18N = True
 

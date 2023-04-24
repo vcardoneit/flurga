@@ -33,6 +33,8 @@ docker run -d --name Flurga --restart unless-stopped -p 1923:1923 ghcr.io/vcardo
 | Environment Variable  | Purpose | Default |
 | ------------- | ------------- | ------------- |
 | `TIME_ZONE`  | Your local timezone in <a href="https://timezonedb.com/time-zones">TZ Name</a> format  | `Europe/Rome`  |
+| `SECRET_KEY`  | Django secret key  | `Random string`  |
+| `DEBUG`  | Enable or disable debug (True/False)  | `False`  |
 | `DJANGO_SUPERUSER_USERNAME`  | Username for login  | `admin`  |
 | `DJANGO_SUPERUSER_PASSWORD`  | Password for login  | `admin`  |
 

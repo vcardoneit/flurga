@@ -1,22 +1,16 @@
 FROM python:alpine3.17
 
-ENV FlurgaPath = /home/Flurga
+RUN mkdir -p /home/Flurga
 
-RUN mkdir -p $FlurgaPath
+COPY . /home/Flurga
 
-COPY . $FlurgaPath
-
-WORKDIR $FlurgaPath
+WORKDIR /home/Flurga
 
 ENV PYTHONDONTWRITEBYTECODE 1
 
 ENV PYTHONUNBUFFERED 1
 
 RUN pip install -r requirements.txt
-
-RUN python -c "from django.core.management.utils import get_random_secret_key; print('SECRET_KEY=' + get_random_secret_key())" > .env
-
-ENV TIME_ZONE Europe/Rome
 
 RUN python manage.py migrate
 

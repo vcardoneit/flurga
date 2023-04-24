@@ -168,7 +168,6 @@ def events(request):
             frigateIP = cfg[x]['frigateIP']
             URL = "http://" + frigateIP + "/api/events?limit=" + str(nEvents)  # -1 infinite
             data = requests.get(url=URL, timeout=2).json()
-            print(data)
 
             for x in data:
                 title.append(x['camera'] + " (" + x['label'].capitalize() + " - " + f"{x['top_score']:.0%}" + ")")
@@ -320,8 +319,6 @@ def recordings(request):
             hourId = 0
             for b in json:
                 fData = datetime.datetime.strptime(b['day'], '%Y-%m-%d')
-                print(camId)
-                print(cam)
                 recordings[camId][cam]['data'].append({fData: []})
                 sHour = sorted(b['hours'], key=lambda x: x['hour'])
                 for k in sHour:
