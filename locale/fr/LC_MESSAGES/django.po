@@ -2,30 +2,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flurga\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 17:38+0200\n"
+"POT-Creation-Date: 2023-07-10 18:58+0200\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 
-#: .\Flurga\settings.py:99
+#: .\Flurga\settings.py:98
 msgid "English"
 msgstr "Anglais"
 
-#: .\Flurga\settings.py:100
+#: .\Flurga\settings.py:99
 msgid "Spanish"
 msgstr "Espagnol"
 
-#: .\Flurga\settings.py:101
+#: .\Flurga\settings.py:100
 msgid "French"
 msgstr "Français"
 
-#: .\Flurga\settings.py:102
+#: .\Flurga\settings.py:101
 msgid "Italian"
 msgstr "Italien"
 
-#: .\Flurga\settings.py:103
+#: .\Flurga\settings.py:102
 msgid "German"
 msgstr "Allemand"
 
@@ -103,11 +103,27 @@ msgstr "Ajouter"
 msgid "Number limit of events"
 msgstr ""
 
-#: .\main\templates\main\events.html:40
+#: .\main\templates\main\events.html:40 .\main\templates\main\events.html:71
 msgid "Delete all events"
 msgstr "Supprimer tous les événements"
 
-#: .\main\templates\main\events.html:54
+#: .\main\templates\main\events.html:43
+msgid "Are you sure you want to delete all events?"
+msgstr ""
+
+#: .\main\templates\main\events.html:46
+msgid "Cancel"
+msgstr ""
+
+#: .\main\templates\main\events.html:47
+msgid "Confirm"
+msgstr ""
+
+#: .\main\templates\main\events.html:57 .\main\templates\main\events.html:59
+msgid "Wait..."
+msgstr ""
+
+#: .\main\templates\main\events.html:85
 msgid "View clip"
 msgstr "Voir le clip"
 
@@ -156,11 +172,11 @@ msgid "Error, check your credentials!"
 msgstr "Erreur, vérifiez vos identifiants !"
 
 #: .\main\views.py:74 .\main\views.py:120 .\main\views.py:138
-#: .\main\views.py:196 .\main\views.py:296
+#: .\main\views.py:195 .\main\views.py:297
 msgid "Config error, please check the configuration below!"
 msgstr ""
 "Erreur de configuration, veuillez vérifier la configuration ci-dessous !"
 
-#: .\main\views.py:217 .\main\views.py:221
+#: .\main\views.py:216 .\main\views.py:220
 msgid "Error, check the passwords!"
 msgstr "Erreur, vérifiez les mots de passe !"

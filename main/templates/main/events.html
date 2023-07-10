@@ -33,11 +33,42 @@
         </div>
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" id="confirmModal" aria-labelledby="confirmModalTitle" data-bs-backdrop='static'>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalTitle">{% trans "Delete all events" %}</h5>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans "Are you sure you want to delete all events?" %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                    <form action="{% url 'events' %}" method="post">{% csrf_token %}<button class="btn btn-primary btn-sm" type="submit" name="dall" formmethod="post" data-bs-toggle="modal" data-bs-target="#wait">{% trans "Confirm" %}</button></form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="wait" aria-labelledby="waitTitle" data-bs-backdrop='static'>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" align="center">
+                <div class="modal-body">
+                    <p class="mb-3"><strong>{% trans "Wait..." %}</strong></p>
+                    <div class="progress-spinner progress-spinner-active">
+                        <span class="visually-hidden">{% trans "Wait..." %}</span>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-auto">
                 <div class="form-group mt-3 mb-0">
-                    <form action="{% url 'events' %}" class="mb-0" method="post">{% csrf_token %}<button type="submit" name="dall" formmethod="post" class="btn btn-primary" style="width:100%" onclick="return confirm('Are you sure?')">{% trans "Delete all events" %}</button></form>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="width:100%" data-bs-target="#confirmModal">{% trans "Delete all events" %}</button>
                 </div>
             </div>
         </div>
