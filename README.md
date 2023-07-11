@@ -16,17 +16,19 @@
 #### Docker compose
 ```yaml
 version: '3.3'
+
+volumes:
+  flurga:
+
 services:
-    flurga:
-        container_name: Flurga
-        restart: unless-stopped
-        ports:
-            - '1923:1923'
-        image: 'ghcr.io/vcardoneit/flurga'
-```
-#### Docker run
-```
-docker run -d --name Flurga --restart unless-stopped -p 1923:1923 ghcr.io/vcardoneit/flurga
+  flurga:
+    container_name: Flurga
+    restart: unless-stopped
+    volumes:
+      - flurga:/home/Flurga
+    ports:
+      - '1923:1923'
+    image: 'ghcr.io/vcardoneit/flurga'
 ```
 
 #### Environment Variables
