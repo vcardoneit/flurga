@@ -47,7 +47,7 @@ Also in the dashboard, you can logout from the session, change the password, cha
 
 ## Problems / Questions
 There may be some bugs and frequent updates, but we encourage you to report any issues!<br><br>
-<b>Email:</b> flurga@vcardone.it - <b>Discord:</b> Block2Paz#4884
+<b>Email:</b> flurga@vcardone.it - <b>Discord:</b> thuderous
 
 ## Screenshot
 <p align="center"><img src="https://i.ibb.co/B67Mrn7/Home.png"></p>
