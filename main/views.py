@@ -25,7 +25,7 @@ def getCams():
             cam = config.objects.values('cams')
             cams = cam[x]['cams'].split(',')
             for y in cams:
-                camUrl = "http://" + frigateIP + "/" + y + "/latest.jpg"
+                camUrl = "http://" + frigateIP + "/api/" + y + "/latest.jpg"
                 r = requests.get(url=camUrl, timeout=2)
                 if (r.status_code == 200):
                     cameras[x][x].append(y)
@@ -170,7 +170,11 @@ def events(request):
             data = requests.get(url=URL, timeout=2).json()
 
             for x in data:
-                title.append(x['camera'] + " (" + x['label'].capitalize() + " - " + f"{x['top_score']:.0%}" + ")")
+                if "score" in x["data"]:
+                    score = x["data"]["score"]
+                else:
+                    score = 0
+                title.append(x['camera'] + " (" + x['label'].capitalize() + " - " + f'{score * 100:.0f}%' + ")")
                 snapshot.append('http://' + frigateIP + '/api/events/' + x['id'] + '/snapshot.jpg')
                 clip.append('http://' + frigateIP + '/api/events/' + x['id'] + '/clip.mp4')
                 delt.append('http://' + frigateIP + '/api/events/' + x['id'])
